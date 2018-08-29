@@ -1,0 +1,14 @@
+include beekeeper.yml
+include CONTRIBUTING.md
+include README.rst
+include AUTHORS
+include LICENSE
+include requirements*.txt
+recursive-include src *.py
+recursive-include tests *.py
+recursive-include docs *.bat
+recursive-include docs *.png
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs *.txt
+recursive-include docs Makefile

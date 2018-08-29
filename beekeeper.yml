@@ -1,0 +1,25 @@
+pull_request:
+    - beefore:
+        name: Prebuild checks
+        subtasks:
+            - pycodestyle:
+                name: Python lint checks
+                image: pybee/beefore
+    - smoke-test:
+        image: pybee/py36
+        name: Smoke build (Python 3.6)
+    - full-test:
+        subtasks:
+            - py3.4:
+                name: Python 3.4 tests
+                image: pybee/py34
+            - py3.5:
+                name: Python 3.5 tests
+                image: pybee/py35
+            - py3.7:
+                name: Python 3.7 tests
+                image: pybee/py37
+push:
+    - smoke-test:
+        image: pybee/py36
+        name: Smoke build (Python 3.6)
