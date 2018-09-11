@@ -1,9 +1,3 @@
-from  .chart import Chart
-__all__ = [
-    '__version__',
-    'Chart'
-]
-
 # Examples of valid version strings
 # __version__ = '1.2.3.dev1'  # Development release 1
 # __version__ = '1.2.3a1'     # Alpha Release 1
@@ -12,4 +6,4 @@ __all__ = [
 # __version__ = '1.2.3'       # Final Release
 # __version__ = '1.2.3.post1' # Post Release 1
 
-__version__ = '0.1.0'
+__version__ = '0.0.1'
