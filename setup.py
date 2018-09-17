@@ -29,6 +29,7 @@ setup(
     package_dir={"": "src"},
     install_requires=[
         'toga>=0.3.0.dev9',
+        'matplotlib>=2.2.3',
     ],
     license='New BSD',
     classifiers=[
