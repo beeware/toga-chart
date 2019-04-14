@@ -74,7 +74,7 @@ class ChartRenderer(RendererBase):
             Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
 
         with stroke_fill_context as context:
-            with context.path() as path_segments:
+            with context.context() as path_segments:
                 for points, code in path.iter_segments(transform):
                     if code == Path.MOVETO:
                         path_segments.move_to(points[0], points[1])
