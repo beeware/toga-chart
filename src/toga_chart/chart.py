@@ -2,9 +2,9 @@ from matplotlib.backend_bases import FigureCanvasBase, RendererBase
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 
-from toga.color import color as parse_color
-from toga.color import rgba
-from toga.font import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
+from toga.colors import color as parse_color
+from toga.colors import rgba
+from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.widgets.canvas import Canvas
 
 
