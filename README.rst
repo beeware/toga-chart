@@ -28,6 +28,9 @@ A matplotlib-style chart widget for Toga
 Quickstart
 ----------
 
+This matplotlib-style chart widget for Toga is still in development. We
+welcome your contributions and feedback!
+
 To get started using Toga Chart, you need the development version of Toga.
 Follow the `Set up your development environment`_ instructions, then do the
 following:
@@ -43,7 +46,7 @@ See the `Examples Readme`_ for how to run the included example.
 Documentation
 -------------
 
-Documentation for Toga Chart can be found on `Read The Docs`_.
+When completed, documentation for Toga Chart can be found on `Read The Docs`_.
 
 Community
 ---------
