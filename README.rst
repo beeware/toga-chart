@@ -31,7 +31,7 @@ Quickstart
 This matplotlib-style chart widget for Toga is still in development. We
 welcome your contributions and feedback!
 
-To get started using Toga Chart, you need the development version of Toga.
+To get started using Toga Chart, you need the development version of `Toga`_.
 Follow the `Set up your development environment`_ instructions, then do the
 following:
 
@@ -67,6 +67,7 @@ Contributing
 If you experience problems with Toga Chart, `log them on GitHub`_. If you
 want to contribute code, please `fork the code`_ and `submit a pull request`_.
 
+.. _Toga: https://github.com/beeware/toga
 .. _BeeWare suite: http://beeware.org
 .. _Set up your development environment: https://toga.readthedocs.io/en/latest/how-to/contribute.html#set-up-your-development-environment
 .. _Examples Readme : examples/README.rst
