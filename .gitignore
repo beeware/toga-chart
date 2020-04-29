@@ -101,3 +101,5 @@ local/
 # runtime data
 runtime/
 
+# IDE
+.idea/
