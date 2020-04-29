@@ -62,7 +62,7 @@ class ChartRenderer(RendererBase):
         else:
             r, g, b, a = gc.get_rgb()
 
-        color = parse_color(rgba(r*255, g*255, b*255, a*255))
+        color = parse_color(rgba(r*255, g*255, b*255, a))
 
         if rgbFace is not None:
             stroke_fill_context = self._renderer.fill(color=color)
