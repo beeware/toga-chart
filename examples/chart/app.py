@@ -27,7 +27,7 @@ def sample_histogram():
     ax.plot(bins, y, '--')
     ax.set_xlabel('Smarts')
     ax.set_ylabel('Probability density')
-    ax.set_title(r'Histogram of IQ: $\mu=100$, $\sigma=15$')
+    ax.set_title('Histogram of IQ: Average=100, Standard Deviation=15')
 
     return f
 

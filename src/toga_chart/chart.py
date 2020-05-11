@@ -1,3 +1,5 @@
+import math
+
 from matplotlib.backend_bases import FigureCanvasBase, RendererBase
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
@@ -91,10 +93,6 @@ class ChartRenderer(RendererBase):
         pass
 
     def draw_text(self, gc, x, y, s, prop, angle, ismath=False, mtext=None):
-        # Convert the text into path segments then render
-        self._draw_text_as_path(gc, x, y, s, prop, angle, ismath)
-
-    def _draw_text_as_path(self, gc, x, y, s, prop, angle, ismath):
         """
         draw the text by converting them to paths using textpath module.
         Parameters
@@ -108,12 +106,12 @@ class ChartRenderer(RendererBase):
         ismath : bool
         If True, use mathtext parser. If "TeX", use *usetex* mode.
         """
-        path, transform = self._get_text_path_transform(
-            x, y, s, prop, angle, ismath)
-        color = gc.get_rgb()
-
-        gc.set_linewidth(.75)
-        self.draw_path(gc, path, transform, rgbFace=color)
+        self._renderer.translate(x, y)
+        self._renderer.rotate(-math.radians(angle))
+        with self._renderer.fill(color=self.to_toga_color(*gc.get_rgb())) as fill:
+            font = self.get_font(prop)
+            fill.write_text(s, x=0, y=0, font=font)
+        self._renderer.reset_transform()
 
     def flipy(self):
         return True
@@ -127,20 +125,27 @@ class ChartRenderer(RendererBase):
         with FontPropertry prop
         """
 
-        if(prop.get_family()[0] == SANS_SERIF):
-            font_family = SANS_SERIF
-        elif(prop.get_family()[0] == CURSIVE):
-            font_family = CURSIVE
-        elif(prop.get_family()[0] == FANTASY):
-            font_family = FANTASY
-        elif(prop.get_family()[0] == MONOSPACE):
-            font_family = MONOSPACE
-        else:
-            font_family = SERIF
-        font = Font(family=font_family, size=int(prop.get_size()))
+        font = self.get_font(prop)
 
         w, h = font.measure(s)
         return w, h, 1
+
+    def get_font(self, prop):
+        if prop.get_family()[0] == SANS_SERIF:
+            font_family = SANS_SERIF
+        elif prop.get_family()[0] == CURSIVE:
+            font_family = CURSIVE
+        elif prop.get_family()[0] == FANTASY:
+            font_family = FANTASY
+        elif prop.get_family()[0] == MONOSPACE:
+            font_family = MONOSPACE
+        else:
+            font_family = SERIF
+        size = int(prop.get_size_in_points())
+        return Font(family=font_family, size=size)
+
+    def to_toga_color(self, r, g, b, a):
+        return parse_color(rgba(r * 255, g * 255, b * 255, a))
 
     def points_to_pixels(self, points):
         return points
