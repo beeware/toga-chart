@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.DS_Store/
+
 # C extensions
 *.so
 
@@ -10,6 +12,7 @@ __pycache__/
 .Python
 env/
 build/
+docs/_build/
 develop-eggs/
 dist/
 downloads/
@@ -21,6 +24,7 @@ parts/
 sdist/
 var/
 *.egg-info/
+*.dist-info/
 .installed.cfg
 *.egg
 
@@ -103,3 +107,4 @@ runtime/
 
 # IDE
 .idea/
+.vscode/
