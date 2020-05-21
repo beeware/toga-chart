@@ -25,9 +25,9 @@ def sample_histogram():
     # add a 'best fit' line
     y = ((1 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
     ax.plot(bins, y, '--')
-    ax.set_xlabel('Smarts')
+    ax.set_xlabel('Value')
     ax.set_ylabel('Probability density')
-    ax.set_title('Histogram of IQ: Average=100, Standard Deviation=15')
+    ax.set_title(r'Histogram: $\mu=100$, $\sigma=15$')
 
     return f
 
