@@ -1,9 +1,14 @@
-include beekeeper.yml
+include CHANGELOG.rst
 include CONTRIBUTING.md
 include README.rst
 include AUTHORS
 include LICENSE
 include requirements*.txt
+include examples/pyproject.toml
+include examples/README.rst
+include tox.ini
+recursive-include changes *.rst
+recursive-include examples *.py
 recursive-include src *.py
 recursive-include tests *.py
 recursive-include docs *.bat

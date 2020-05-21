@@ -17,8 +17,9 @@ Toga Chart
 .. image:: https://img.shields.io/pypi/l/toga_chart.svg
     :target: https://github.com/beeware/toga_chart/blob/master/LICENSE
 
-.. image:: https://beekeeper.beeware.org/projects/beeware/toga_chart/shield
-    :target: https://beekeeper.beeware.org/projects/beeware/toga_chart
+.. image:: https://github.com/beeware/toga_chart/workflows/CI/badge.svg?branch=master
+   :target: https://github.com/beeware/toga_chart/actions
+   :alt: Build Status
 
 .. image:: https://badges.gitter.im/beeware/general.svg
     :target: https://gitter.im/beeware/general

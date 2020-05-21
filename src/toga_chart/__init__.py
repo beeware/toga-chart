@@ -1,4 +1,4 @@
-from  .chart import Chart
+from .chart import Chart
 __all__ = [
     '__version__',
     'Chart'
