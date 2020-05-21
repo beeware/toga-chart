@@ -1,4 +1,5 @@
 import math
+import sys
 
 from matplotlib.backend_bases import FigureCanvasBase, RendererBase
 from matplotlib.path import Path
@@ -94,24 +95,33 @@ class ChartRenderer(RendererBase):
 
     def draw_text(self, gc, x, y, s, prop, angle, ismath=False, mtext=None):
         """
-        draw the text by converting them to paths using textpath module.
-        Parameters
-        ----------
-        prop : `matplotlib.font_manager.FontProperties`
-        font property
-        s : str
-        text to be converted
-        usetex : bool
-        If True, use matplotlib usetex mode.
-        ismath : bool
-        If True, use mathtext parser. If "TeX", use *usetex* mode.
+        Draw text on the chart.
+
+        Math-formatted text is drawn using paths; normal text is written using
+        native Canvas methods.
         """
-        self._renderer.translate(x, y)
-        self._renderer.rotate(-math.radians(angle))
-        with self._renderer.fill(color=self.to_toga_color(*gc.get_rgb())) as fill:
-            font = self.get_font(prop)
-            fill.write_text(s, x=0, y=0, font=font)
-        self._renderer.reset_transform()
+        # TODO: Winforms canvas doesn't support math mode text (yet!)
+        # Do a minimalist attempt at stripping the math markup and turn the
+        # string into a non-math string.
+        if sys.platform == 'win32':
+            ismath = False
+            s = s.replace('$', '')
+
+        # Math mode text must be rendered using paths.
+        # Otherwise, we can use canvas-level text markup.
+        if ismath:
+            path, transform = self._get_text_path_transform(x, y, s, prop, angle, ismath)
+            color = gc.get_rgb()
+
+            gc.set_linewidth(.75)
+            self.draw_path(gc, path, transform, rgbFace=color)
+        else:
+            self._renderer.translate(x, y)
+            self._renderer.rotate(-math.radians(angle))
+            with self._renderer.fill(color=self.to_toga_color(*gc.get_rgb())) as fill:
+                font = self.get_font(prop)
+                fill.write_text(s, x=0, y=0, font=font)
+            self._renderer.reset_transform()
 
     def flipy(self):
         return True
@@ -141,6 +151,7 @@ class ChartRenderer(RendererBase):
             font_family = MONOSPACE
         else:
             font_family = SERIF
+
         size = int(prop.get_size_in_points())
         return Font(family=font_family, size=size)
 
