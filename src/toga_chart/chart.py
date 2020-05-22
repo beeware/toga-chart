@@ -34,7 +34,7 @@ class Chart(Canvas, FigureCanvasBase):
         self.figure = figure
         FigureCanvasBase.__init__(self, self.figure)
         l, b, w, h = self.figure.bbox.bounds
-        renderer = ChartRenderer(self, w, h, self.figure.dpi)
+        renderer = ChartRenderer(self, w, h, self._impl.container.viewport.dpi)
         self.figure.draw(renderer)
 
 
