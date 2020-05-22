@@ -137,7 +137,7 @@ class ChartRenderer(RendererBase):
 
         font = self.get_font(prop)
 
-        w, h = font.measure(s)
+        w, h = font.measure(s, dpi=self.dpi)
         return w, h, 1
 
     def get_font(self, prop):
@@ -159,4 +159,4 @@ class ChartRenderer(RendererBase):
         return parse_color(rgba(r * 255, g * 255, b * 255, a))
 
     def points_to_pixels(self, points):
-        return points
+        return points * self.dpi / 72

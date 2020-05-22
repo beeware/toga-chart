@@ -16,7 +16,7 @@ def sample_histogram():
 
     num_bins = 50
 
-    f = Figure(figsize=(5, 4), dpi=100)
+    f = Figure(figsize=(5, 4))
     ax = f.add_subplot(1, 1, 1)
 
     # the histogram of the data
