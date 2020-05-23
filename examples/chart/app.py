@@ -16,7 +16,7 @@ def sample_histogram():
 
     num_bins = 50
 
-    f = Figure(figsize=(5, 4), dpi=100)
+    f = Figure(figsize=(5, 4))
     ax = f.add_subplot(1, 1, 1)
 
     # the histogram of the data
@@ -25,9 +25,9 @@ def sample_histogram():
     # add a 'best fit' line
     y = ((1 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
     ax.plot(bins, y, '--')
-    ax.set_xlabel('Smarts')
+    ax.set_xlabel('Value')
     ax.set_ylabel('Probability density')
-    ax.set_title(r'Histogram of IQ: $\mu=100$, $\sigma=15$')
+    ax.set_title(r'Histogram: $\mu=100$, $\sigma=15$')
 
     return f
 
