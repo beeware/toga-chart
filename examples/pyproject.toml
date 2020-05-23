@@ -2,7 +2,7 @@
 requires = ["briefcase"]
 
 [tool.briefcase]
-project_name = "Chart Demo"
+project_name = "Toga Chart Demo"
 bundle = "org.beeware"
 version = "0.1"
 url = "https://beeware.org"

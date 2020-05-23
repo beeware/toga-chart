@@ -26,10 +26,11 @@
 
 
 ==========
-Toga-chart
+Toga Chart
 ==========
 
-Toga-chart is matplotlib charting backend for Toga.
+Toga Chart is `Matplotlib <https://matplotlib.org/>`__ chart widget for `Toga
+<https://github.com/beeware/toga>`__.
 
 .. rst-class::  row
 
@@ -75,7 +76,7 @@ Technical reference - commands, modules, classes, methods
 Community
 =========
 
-Toga-chart is part of the `BeeWare suite <http://beeware.org>`__. You can talk
+Toga Chart is part of the `BeeWare suite <http://beeware.org>`__. You can talk
 to the community through:
 
  * `@pybeeware on Twitter <https://twitter.com/pybeeware>`__
