@@ -1,0 +1,1 @@
+Removed use of DPI-based canvas APIs.
