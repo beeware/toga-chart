@@ -34,7 +34,7 @@ class Chart(Canvas, FigureCanvasBase):
         self.figure = figure
         FigureCanvasBase.__init__(self, self.figure)
         l, b, w, h = self.figure.bbox.bounds
-        renderer = ChartRenderer(self, w, h, self._impl.container.viewport.dpi)
+        renderer = ChartRenderer(self, w, h)
         self.figure.draw(renderer)
 
 
@@ -46,10 +46,8 @@ class ChartRenderer(RendererBase):
         renderer (:obj:`Canvas`):  canvas to render onto
         width (int): width of canvas
         height (int): height of canvas
-        dpi (int): dots per inch of the canvas
     """
-    def __init__(self, renderer, width, height, dpi):
-        self.dpi = dpi
+    def __init__(self, renderer, width, height):
         self.width = width
         self.height = height
         self._renderer = renderer
@@ -134,10 +132,8 @@ class ChartRenderer(RendererBase):
         get the width and height in display coords of the string s
         with FontPropertry prop
         """
-
         font = self.get_font(prop)
-
-        w, h = font.measure(s, dpi=self.dpi)
+        w, h = self._renderer.measure_text(s, font)
         return w, h, 1
 
     def get_font(self, prop):
@@ -157,6 +153,3 @@ class ChartRenderer(RendererBase):
 
     def to_toga_color(self, r, g, b, a):
         return parse_color(rgba(r * 255, g * 255, b * 255, a))
-
-    def points_to_pixels(self, points):
-        return points * self.dpi / 72
