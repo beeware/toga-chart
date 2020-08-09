@@ -1,1 +1,0 @@
-Added formal CI, testing and packaging configuration.

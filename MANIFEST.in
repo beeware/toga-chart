@@ -1,4 +1,3 @@
-include CHANGELOG.rst
 include CONTRIBUTING.md
 include README.rst
 include AUTHORS
