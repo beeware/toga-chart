@@ -39,7 +39,7 @@ To get started using Toga Chart, run the following::
     $ python3 -m venv venv
     $ source venv/bin/activate
     (venv) $ pip install -e .
-    (venv) $ cd example
+    (venv) $ cd examples
     (venv) $ python -m chart
 
 Documentation
