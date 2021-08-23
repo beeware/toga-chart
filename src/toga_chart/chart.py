@@ -18,12 +18,13 @@ class Chart(Canvas, FigureCanvasBase):
         id (str):  An identifier for this widget.
         style (:obj:`Style`): An optional style object. If no
             style is provided then a new one will be created for the widget.
+        on_resize (:obj:`callable`): Handler to invoke when the canvas is resized.
         factory (:obj:`module`): A python module that is capable to return a
             implementation of this class with the same name. (optional &
             normally not needed)
     """
-    def __init__(self, id=None, style=None, factory=None):
-        Canvas.__init__(self, id=id, style=style, factory=factory)
+    def __init__(self, id=None, style=None, on_resize=None, factory=None):
+        Canvas.__init__(self, id=id, style=style, on_resize=on_resize, factory=factory)
 
     def draw(self, figure):
         """Draws the matplotlib figure onto the canvas
