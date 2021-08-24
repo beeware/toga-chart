@@ -17,7 +17,10 @@ class ExampleChartApp(toga.App):
         num_bins = 50
 
         dpi = 100  # as of writing, 100 is also the default DPI for matplotlib.figure.Figure
-        f = Figure(figsize=(self.chart.layout.content_width / dpi, self.chart.layout.content_height / dpi), dpi=dpi)
+        # width and height can sometimes be 0 on initial rendering, so this gives a default value
+        width  = 4.52 if self.chart.layout.content_width  == 0 else self.chart.layout.content_width  / dpi
+        height = 6.4  if self.chart.layout.content_height == 0 else self.chart.layout.content_height / dpi
+        f = Figure(figsize=(width, height), dpi=dpi)
         ax = f.add_subplot(1, 1, 1)
 
         # the histogram of the data
@@ -53,7 +56,7 @@ class ExampleChartApp(toga.App):
             style=Pack(direction=COLUMN)
         )
 
-        self.chart.draw(self.draw_chart())
+        # self.chart.draw(self.draw_chart()) # this is not required here since we are redrawing on resize
 
         self.main_window.show()
 
