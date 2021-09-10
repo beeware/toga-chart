@@ -28,16 +28,13 @@ class ExampleChartApp(toga.App):
 
         figure.tight_layout()
 
-    def resize(self, *args, **kwargs):
-        pass
-
     def startup(self):
         np.random.seed(19680801)
 
         # Set up main window
         self.main_window = toga.MainWindow(title=self.name)
 
-        self.chart = toga_chart.Chart(style=Pack(flex=1), on_resize=self.resize, on_draw=self.draw_chart)
+        self.chart = toga_chart.Chart(style=Pack(flex=1), on_draw=self.draw_chart)
 
         self.main_window.content = toga.Box(
             children=[
