@@ -2,12 +2,14 @@ import math
 import sys
 
 from matplotlib.backend_bases import FigureCanvasBase, RendererBase
+from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 
 from toga.colors import color as parse_color
 from toga.colors import rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
+from toga.handlers import wrapped_handler
 from toga.widgets.canvas import Canvas
 
 
@@ -18,13 +20,20 @@ class Chart(Canvas, FigureCanvasBase):
         id (str):  An identifier for this widget.
         style (:obj:`Style`): An optional style object. If no
             style is provided then a new one will be created for the widget.
-        on_resize (:obj:`callable`): Handler to invoke when the canvas is resized.
+        on_resize (:obj:`callable`): Handler to invoke when the chart is resized.
+            The default resize handler will draw the chart on every resize;
+            generally, you won't need to override this default behavior.
+        on_draw (:obj:`callable`): Handler to invoke when the chart needs to be
+            drawn.
         factory (:obj:`module`): A python module that is capable to return a
             implementation of this class with the same name. (optional &
             normally not needed)
     """
-    def __init__(self, id=None, style=None, on_resize=None, factory=None):
+    def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
+        if on_resize is None:
+            on_resize = self._resize
         Canvas.__init__(self, id=id, style=style, on_resize=on_resize, factory=factory)
+        self.on_draw = on_draw
 
     def draw(self, figure):
         """Draws the matplotlib figure onto the canvas
@@ -32,11 +41,41 @@ class Chart(Canvas, FigureCanvasBase):
         Args:
             figure (figure):  matplotlib figure to draw
         """
-        self.figure = figure
-        FigureCanvasBase.__init__(self, self.figure)
-        l, b, w, h = self.figure.bbox.bounds
+        FigureCanvasBase.__init__(self, figure)
+        l, b, w, h = figure.bbox.bounds
         renderer = ChartRenderer(self, w, h)
-        self.figure.draw(renderer)
+        figure.draw(renderer)
+
+    def _resize(self, *args, **kwargs):
+        ""
+        # 100 is the default DPI for figure at time of writing.
+        dpi = 100
+        figure = Figure(
+            figsize=(
+                self.layout.content_width / dpi,
+                self.layout.content_height / dpi
+            )
+        )
+        self.on_draw(self, figure=figure)
+        self.draw(figure)
+
+    @property
+    def on_draw(self):
+        """The handler to invoke when the canvas needs to be drawn.
+
+        Returns:
+            The handler that is invoked on canvas draw.
+        """
+        return self._on_draw
+
+    @on_draw.setter
+    def on_draw(self, handler):
+        """Set the handler to invoke when the canvas is drawn.
+
+        Args:
+            handler (:obj:`callable`): The handler to invoke when the canvas is drawn.
+        """
+        self._on_draw = wrapped_handler(self, handler)
 
 
 class ChartRenderer(RendererBase):

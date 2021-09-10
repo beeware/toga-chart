@@ -1,14 +1,12 @@
 import toga
 import toga_chart
 from toga.style import Pack
-from matplotlib.figure import Figure
 import numpy as np
 from toga.constants import COLUMN
 
 
 class ExampleChartApp(toga.App):
-
-    def draw_chart(self):
+    def draw_chart(self, chart, figure, *args, **kwargs):
         # example data
         mu = 100  # mean of distribution
         sigma = 15  # standard deviation of distribution
@@ -16,12 +14,7 @@ class ExampleChartApp(toga.App):
 
         num_bins = 50
 
-        dpi = 100  # as of writing, 100 is also the default DPI for matplotlib.figure.Figure
-        # width and height can sometimes be 0 on initial rendering, so this gives a default value
-        width  = 4.52 if self.chart.layout.content_width  == 0 else self.chart.layout.content_width  / dpi
-        height = 6.4  if self.chart.layout.content_height == 0 else self.chart.layout.content_height / dpi
-        f = Figure(figsize=(width, height), dpi=dpi)
-        ax = f.add_subplot(1, 1, 1)
+        ax = figure.add_subplot(1, 1, 1)
 
         # the histogram of the data
         n, bins, patches = ax.hist(x, num_bins, density=1)
@@ -33,13 +26,10 @@ class ExampleChartApp(toga.App):
         ax.set_ylabel('Probability density')
         ax.set_title(r'Histogram: $\mu=100$, $\sigma=15$')
 
-        f.tight_layout()
-        return f
+        figure.tight_layout()
 
-
-    def on_resize(self, *args, **kwargs):
-        self.chart.draw(self.draw_chart())
-
+    def resize(self, *args, **kwargs):
+        pass
 
     def startup(self):
         np.random.seed(19680801)
@@ -47,7 +37,7 @@ class ExampleChartApp(toga.App):
         # Set up main window
         self.main_window = toga.MainWindow(title=self.name)
 
-        self.chart = toga_chart.Chart(style=Pack(flex=1), on_resize=self.on_resize)
+        self.chart = toga_chart.Chart(style=Pack(flex=1), on_resize=self.resize, on_draw=self.draw_chart)
 
         self.main_window.content = toga.Box(
             children=[
@@ -55,8 +45,6 @@ class ExampleChartApp(toga.App):
             ],
             style=Pack(direction=COLUMN)
         )
-
-        # self.chart.draw(self.draw_chart()) # this is not required here since we are redrawing on resize
 
         self.main_window.show()
 
