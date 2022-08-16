@@ -44,6 +44,14 @@ class Chart(Canvas, FigureCanvasBase):
         FigureCanvasBase.__init__(self, figure)
         l, b, w, h = figure.bbox.bounds
         renderer = ChartRenderer(self, w, h)
+
+        # Invoke the on_draw handler (if present).
+        # This is where the user adds the matplotlib draw instructions
+        # to construct the chart, so it needs to happen before the
+        # figure is rendered onto the canvas.
+        if self.on_draw:
+            self.on_draw(self, figure=figure)
+
         figure.draw(renderer)
 
     def _resize(self, *args, **kwargs):
@@ -56,7 +64,6 @@ class Chart(Canvas, FigureCanvasBase):
                 self.layout.content_height / dpi
             )
         )
-        self.on_draw(self, figure=figure)
         self.draw(figure)
 
     @property
