@@ -56,7 +56,8 @@ class Chart(Canvas, FigureCanvasBase):
                 self.layout.content_height / dpi
             )
         )
-        self.on_draw(self, figure=figure)
+        if self.on_draw:
+            self.on_draw(self, figure=figure)
         self.draw(figure)
 
     @property
