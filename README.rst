@@ -15,9 +15,9 @@ Toga Chart
     :target: https://pypi.python.org/pypi/toga-chart
 
 .. image:: https://img.shields.io/pypi/l/toga-chart.svg
-    :target: https://github.com/beeware/toga-chart/blob/master/LICENSE
+    :target: https://github.com/beeware/toga-chart/blob/main/LICENSE
 
-.. image:: https://github.com/beeware/toga-chart/workflows/CI/badge.svg?branch=master
+.. image:: https://github.com/beeware/toga-chart/workflows/CI/badge.svg?branch=main
    :target: https://github.com/beeware/toga-chart/actions
    :alt: Build Status
 

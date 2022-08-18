@@ -14,19 +14,19 @@ you can configure that checkout by running::
 
 The procedure for cutting a new release is as follows:
 
-1. Check the contents of the upstream repository's master branch::
+1. Check the contents of the upstream repository's main branch::
 
     $ git fetch upstream
-    $ git checkout --detach upstream/master
+    $ git checkout --detach upstream/main
 
-   Check that the HEAD of release now matches upstream/master.
+   Check that the HEAD of release now matches upstream/main.
 
 2. Make sure the branch is ready for release. Ensure that:
 
    1. The version number has been bumped.
 
    2. The release notes are up to date. If they are, the `changes
-      <https://github.com/beeware/toga-chart/tree/master/changes>`__ directory
+      <https://github.com/beeware/toga-chart/tree/main/changes>`__ directory
       should be empty, except for the ``template.rst`` file.
 
    These two changes (the version bump and release notes update) should go
@@ -49,6 +49,7 @@ The procedure for cutting a new release is as follows:
 3. Tag the release, and push the tag upstream::
 
     $ git tag v1.2.3
+    $ git push upstream main
     $ git push upstream v1.2.3
 
 4. Pushing the tag will start a workflow to create a draft release on GitHub.
