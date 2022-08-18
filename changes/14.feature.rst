@@ -1,1 +1,0 @@
-Chart now has an ``on_draw()`` handler to ensure the chart auto-resizes.

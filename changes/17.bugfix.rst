@@ -1,1 +1,0 @@
-Added a `None` check before calling `on_draw`

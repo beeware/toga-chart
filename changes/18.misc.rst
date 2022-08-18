@@ -1,2 +1,0 @@
-Fix bug in `towncrier-check` that it will compare PR branch to `origin/main`
-instead of `origin/master`.
