@@ -1,0 +1,1 @@
+introduce `Chart.build_figure` to create a figure with the right size.
