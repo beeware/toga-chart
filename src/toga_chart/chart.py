@@ -55,7 +55,11 @@ class Chart(Canvas, FigureCanvasBase):
         figure.draw(renderer)
 
     def _resize(self, *args, **kwargs):
-        ""
+        """Resize the figure according to chart size"""
+        self.draw(self.build_figure())
+
+    def build_figure(self):
+        """Build a figure with the same side as the chart."""
         # 100 is the default DPI for figure at time of writing.
         dpi = 100
         figure = Figure(
@@ -64,7 +68,7 @@ class Chart(Canvas, FigureCanvasBase):
                 self.layout.content_height / dpi
             )
         )
-        self.draw(figure)
+        return figure
 
     @property
     def on_draw(self):
