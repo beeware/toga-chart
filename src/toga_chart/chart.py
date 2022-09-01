@@ -31,7 +31,7 @@ class Chart(Canvas, FigureCanvasBase):
     """
     def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
         if on_resize is None:
-            on_resize = self._resize
+            on_resize = self.redraw
         Canvas.__init__(self, id=id, style=style, on_resize=on_resize, factory=factory)
         self.on_draw = on_draw
 
@@ -54,7 +54,7 @@ class Chart(Canvas, FigureCanvasBase):
 
         figure.draw(renderer)
 
-    def _resize(self, *args, **kwargs):
+    def redraw(self, *args, **kwargs):
         ""
         # 100 is the default DPI for figure at time of writing.
         dpi = 100
@@ -65,6 +65,7 @@ class Chart(Canvas, FigureCanvasBase):
             )
         )
         self.draw(figure)
+        super().redraw()
 
     @property
     def on_draw(self):
