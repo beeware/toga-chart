@@ -40,7 +40,11 @@ class ExampleChartApp(toga.App):
         self.main_window.content = toga.Box(
             children=[
                 self.chart,
-                toga.Button("Recreate Data", on_press=self.on_recreate_press)
+                toga.Button(
+                    "Recreate Data",
+                    on_press=self.on_recreate_press,
+                    style=Pack(padding_bottom=10, padding_top=10)
+                )
             ],
             style=Pack(direction=COLUMN)
         )
