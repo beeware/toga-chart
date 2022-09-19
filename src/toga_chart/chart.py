@@ -30,10 +30,10 @@ class Chart(Widget):
             implementation of this class with the same name. (optional &
             normally not needed)
     """
-    def __init__(self, style=None, on_resize=None, on_draw=None, factory=None):
+    def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
         if on_resize is None:
             on_resize = self.redraw
-        super().__init__(style=style, factory=factory)
+        super().__init__(id=id, style=style, factory=factory)
         self.canvas = Canvas(style=style, on_resize=on_resize, factory=factory)
         self._impl = self.canvas._impl
         self.on_draw = on_draw
