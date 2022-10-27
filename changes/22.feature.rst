@@ -1,0 +1,1 @@
+Chart is a now standalone widget, rather than an extension of a Toga Canvas.

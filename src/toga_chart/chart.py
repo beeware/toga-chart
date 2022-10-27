@@ -6,14 +6,14 @@ from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 
+from toga import Canvas, Widget
 from toga.colors import color as parse_color
 from toga.colors import rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
-from toga.widgets.canvas import Canvas
 
 
-class Chart(Canvas, FigureCanvasBase):
+class Chart(Widget):
     """Create new chart.
 
     Args:
@@ -30,20 +30,38 @@ class Chart(Canvas, FigureCanvasBase):
             normally not needed)
     """
     def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
-        if on_resize is None:
-            on_resize = self._resize
-        Canvas.__init__(self, id=id, style=style, on_resize=on_resize, factory=factory)
         self.on_draw = on_draw
+        if on_resize is None:
+            on_resize = self._on_resize
 
-    def draw(self, figure):
+        self.canvas = Canvas(style=style, on_resize=on_resize, factory=factory)
+
+        super().__init__(id=id, style=style, factory=factory)
+        self._impl = self.canvas._impl
+
+    def _set_app(self, app):
+        self.canvas.app = app
+
+    def _set_window(self, window):
+        self.canvas.window = window
+
+    @property
+    def layout(self):
+        return self.canvas.layout
+
+    @layout.setter
+    def layout(self, value):
+        self.canvas.layout = value
+
+    def _draw(self, figure):
         """Draws the matplotlib figure onto the canvas
 
         Args:
             figure (figure):  matplotlib figure to draw
         """
-        FigureCanvasBase.__init__(self, figure)
         l, b, w, h = figure.bbox.bounds
-        renderer = ChartRenderer(self, w, h)
+        matplotlib_canvas = MatplotlibCanvasProxy(figure=figure, canvas=self.canvas)
+        renderer = ChartRenderer(matplotlib_canvas, w, h)
 
         # Invoke the on_draw handler (if present).
         # This is where the user adds the matplotlib draw instructions
@@ -54,8 +72,11 @@ class Chart(Canvas, FigureCanvasBase):
 
         figure.draw(renderer)
 
-    def _resize(self, *args, **kwargs):
-        ""
+    def _on_resize(self, widget, **kwargs):
+        self.redraw()
+
+    def redraw(self):
+        """Redraw the chart."""
         # 100 is the default DPI for figure at time of writing.
         dpi = 100
         figure = Figure(
@@ -64,7 +85,7 @@ class Chart(Canvas, FigureCanvasBase):
                 self.layout.content_height / dpi
             )
         )
-        self.draw(figure)
+        self._draw(figure)
 
     @property
     def on_draw(self):
@@ -85,19 +106,43 @@ class Chart(Canvas, FigureCanvasBase):
         self._on_draw = wrapped_handler(self, handler)
 
 
+class MatplotlibCanvasProxy(FigureCanvasBase):
+    def __init__(self, figure, canvas: Canvas):
+        super().__init__(figure)
+        self.canvas = canvas
+
+    def fill(self, color):
+        return self.canvas.fill(color=color)
+
+    def stroke(self, color, line_width, line_dash):
+        return self.canvas.stroke(color=color, line_width=line_width, line_dash=line_dash)
+
+    def measure_text(self, text, font):
+        return self.canvas.measure_text(text=text, font=font)
+
+    def translate(self, tx, ty):
+        return self.canvas.translate(tx, ty)
+
+    def rotate(self, radians):
+        return self.canvas.rotate(radians)
+
+    def reset_transform(self):
+        return self.canvas.reset_transform()
+
+
 class ChartRenderer(RendererBase):
     """
     The renderer handles drawing/rendering operations.
 
     Args:
-        renderer (:obj:`Canvas`):  canvas to render onto
+        canvas (:obj:`Canvas`):  canvas to render onto
         width (int): width of canvas
         height (int): height of canvas
     """
-    def __init__(self, renderer, width, height):
+    def __init__(self, canvas, width, height):
         self.width = width
         self.height = height
-        self._renderer = renderer
+        self._canvas = canvas
         RendererBase.__init__(self)
 
     def draw_path(self, gc, path, transform, rgbFace=None):
@@ -113,10 +158,10 @@ class ChartRenderer(RendererBase):
         color = parse_color(rgba(r*255, g*255, b*255, a))
 
         if rgbFace is not None:
-            stroke_fill_context = self._renderer.fill(color=color)
+            stroke_fill_context = self._canvas.fill(color=color)
         else:
             offset, sequence = gc.get_dashes()
-            stroke_fill_context = self._renderer.stroke(color=color, line_width=gc.get_linewidth(), line_dash=sequence)
+            stroke_fill_context = self._canvas.stroke(color=color, line_width=gc.get_linewidth(), line_dash=sequence)
 
         transform = transform + \
             Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
@@ -161,12 +206,12 @@ class ChartRenderer(RendererBase):
             gc.set_linewidth(.75)
             self.draw_path(gc, path, transform, rgbFace=color)
         else:
-            self._renderer.translate(x, y)
-            self._renderer.rotate(-math.radians(angle))
-            with self._renderer.fill(color=self.to_toga_color(*gc.get_rgb())) as fill:
+            self._canvas.translate(x, y)
+            self._canvas.rotate(-math.radians(angle))
+            with self._canvas.fill(color=self.to_toga_color(*gc.get_rgb())) as fill:
                 font = self.get_font(prop)
                 fill.write_text(s, x=0, y=0, font=font)
-            self._renderer.reset_transform()
+            self._canvas.reset_transform()
 
     def flipy(self):
         return True
@@ -180,7 +225,7 @@ class ChartRenderer(RendererBase):
         with FontPropertry prop
         """
         font = self.get_font(prop)
-        w, h = self._renderer.measure_text(s, font)
+        w, h = self._canvas.measure_text(s, font)
         return w, h, 1
 
     def get_font(self, prop):

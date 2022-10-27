@@ -6,21 +6,24 @@ from toga.constants import COLUMN
 
 
 class ExampleChartApp(toga.App):
-    def draw_chart(self, chart, figure, *args, **kwargs):
+    MU = 100  # mean of distribution
+    SIGMA = 15  # standard deviation of distribution
+
+    def set_data(self):
         # Generate some example data
-        mu = 100  # mean of distribution
-        sigma = 15  # standard deviation of distribution
-        x = mu + sigma * np.random.randn(437)
+        self.x = self.MU + self.SIGMA * np.random.randn(437)
+
+    def draw_chart(self, chart, figure, *args, **kwargs):
 
         num_bins = 50
 
         # Add a subplot that is a histogram of the data,
         # using the normal matplotlib API
         ax = figure.add_subplot(1, 1, 1)
-        n, bins, patches = ax.hist(x, num_bins, density=1)
+        n, bins, patches = ax.hist(self.x, num_bins, density=1)
 
         # add a 'best fit' line
-        y = ((1 / (np.sqrt(2 * np.pi) * sigma)) * np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
+        y = ((1 / (np.sqrt(2 * np.pi) * self.SIGMA)) * np.exp(-0.5 * (1 / self.SIGMA * (bins - self.MU))**2))
         ax.plot(bins, y, '--')
 
         ax.set_xlabel('Value')
@@ -29,8 +32,13 @@ class ExampleChartApp(toga.App):
 
         figure.tight_layout()
 
+    def recreate_data(self, widget):
+        self.set_data()
+        self.chart.redraw()
+
     def startup(self):
         np.random.seed(19680801)
+        self.set_data()
 
         # Set up main window
         self.main_window = toga.MainWindow(title=self.name)
@@ -40,6 +48,7 @@ class ExampleChartApp(toga.App):
         self.main_window.content = toga.Box(
             children=[
                 self.chart,
+                toga.Button("Recreate data", on_press=self.recreate_data)
             ],
             style=Pack(direction=COLUMN)
         )
