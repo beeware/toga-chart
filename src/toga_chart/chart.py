@@ -5,13 +5,12 @@ from matplotlib.backend_bases import FigureCanvasBase, RendererBase
 from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
-from toga import Widget
 
+from toga import Canvas, Widget
 from toga.colors import color as parse_color
 from toga.colors import rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
-from toga.widgets.canvas import Canvas
 
 
 class Chart(Widget):
@@ -31,14 +30,21 @@ class Chart(Widget):
             normally not needed)
     """
     def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
+        self.on_draw = on_draw
         if on_resize is None:
-            on_resize = self.redraw
+            on_resize = lambda canvas, **kwargs: self.redraw()
+
         super().__init__(id=id, style=style, factory=factory)
         self.canvas = Canvas(style=style, on_resize=on_resize, factory=factory)
         self._impl = self.canvas._impl
-        self.on_draw = on_draw
 
-    def draw(self, figure):
+    def _set_app(self, app):
+        self.canvas.app = app
+
+    def _set_window(self, window):
+        self.canvas.window = window
+
+    def _draw(self, figure):
         """Draws the matplotlib figure onto the canvas
 
         Args:
@@ -57,7 +63,7 @@ class Chart(Widget):
 
         figure.draw(renderer)
 
-    def redraw(self, *args, **kwargs):
+    def redraw(self):
         """Redraw the chart."""
         # 100 is the default DPI for figure at time of writing.
         dpi = 100
@@ -67,7 +73,7 @@ class Chart(Widget):
                 self.layout.content_height / dpi
             )
         )
-        self.draw(figure)
+        self._draw(figure)
 
     @property
     def on_draw(self):
