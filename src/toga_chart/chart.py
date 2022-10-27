@@ -32,10 +32,11 @@ class Chart(Widget):
     def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
         self.on_draw = on_draw
         if on_resize is None:
-            on_resize = lambda canvas, **kwargs: self.redraw()
+            on_resize = self._on_resize
+
+        self.canvas = Canvas(style=style, on_resize=on_resize, factory=factory)
 
         super().__init__(id=id, style=style, factory=factory)
-        self.canvas = Canvas(style=style, on_resize=on_resize, factory=factory)
         self._impl = self.canvas._impl
 
     def _set_app(self, app):
@@ -43,6 +44,14 @@ class Chart(Widget):
 
     def _set_window(self, window):
         self.canvas.window = window
+
+    @property
+    def layout(self):
+        return self.canvas.layout
+
+    @layout.setter
+    def layout(self, value):
+        self.canvas.layout = value
 
     def _draw(self, figure):
         """Draws the matplotlib figure onto the canvas
@@ -62,6 +71,9 @@ class Chart(Widget):
             self.on_draw(self, figure=figure)
 
         figure.draw(renderer)
+
+    def _on_resize(self, widget, **kwargs):
+        self.redraw()
 
     def redraw(self):
         """Redraw the chart."""
