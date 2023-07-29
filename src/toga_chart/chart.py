@@ -5,7 +5,6 @@ from matplotlib.backend_bases import FigureCanvasBase, RendererBase
 from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
-
 from toga import Canvas, Widget
 from toga.colors import color as parse_color
 from toga.colors import rgba
@@ -29,6 +28,7 @@ class Chart(Widget):
             implementation of this class with the same name. (optional &
             normally not needed)
     """
+
     def __init__(self, id=None, style=None, on_resize=None, on_draw=None, factory=None):
         self.on_draw = on_draw
         if on_resize is None:
@@ -80,10 +80,7 @@ class Chart(Widget):
         # 100 is the default DPI for figure at time of writing.
         dpi = 100
         figure = Figure(
-            figsize=(
-                self.layout.content_width / dpi,
-                self.layout.content_height / dpi
-            )
+            figsize=(self.layout.content_width / dpi, self.layout.content_height / dpi)
         )
         self._draw(figure)
 
@@ -115,7 +112,9 @@ class MatplotlibCanvasProxy(FigureCanvasBase):
         return self.canvas.fill(color=color)
 
     def stroke(self, color, line_width, line_dash):
-        return self.canvas.stroke(color=color, line_width=line_width, line_dash=line_dash)
+        return self.canvas.stroke(
+            color=color, line_width=line_width, line_dash=line_dash
+        )
 
     def measure_text(self, text, font):
         return self.canvas.measure_text(text=text, font=font)
@@ -139,6 +138,7 @@ class ChartRenderer(RendererBase):
         width (int): width of canvas
         height (int): height of canvas
     """
+
     def __init__(self, canvas, width, height):
         self.width = width
         self.height = height
@@ -155,16 +155,17 @@ class ChartRenderer(RendererBase):
         else:
             r, g, b, a = gc.get_rgb()
 
-        color = parse_color(rgba(r*255, g*255, b*255, a))
+        color = parse_color(rgba(r * 255, g * 255, b * 255, a))
 
         if rgbFace is not None:
             stroke_fill_context = self._canvas.fill(color=color)
         else:
             offset, sequence = gc.get_dashes()
-            stroke_fill_context = self._canvas.stroke(color=color, line_width=gc.get_linewidth(), line_dash=sequence)
+            stroke_fill_context = self._canvas.stroke(
+                color=color, line_width=gc.get_linewidth(), line_dash=sequence
+            )
 
-        transform = transform + \
-            Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
+        transform = transform + Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
 
         with stroke_fill_context as context:
             with context.context() as path_segments:
@@ -174,9 +175,18 @@ class ChartRenderer(RendererBase):
                     elif code == Path.LINETO:
                         path_segments.line_to(points[0], points[1])
                     elif code == Path.CURVE3:
-                        path_segments.quadratic_curve_to(points[0], points[1], points[2], points[3])
+                        path_segments.quadratic_curve_to(
+                            points[0], points[1], points[2], points[3]
+                        )
                     elif code == Path.CURVE4:
-                        path_segments.bezier_curve_to(points[0], points[1], points[2], points[3], points[4], points[5])
+                        path_segments.bezier_curve_to(
+                            points[0],
+                            points[1],
+                            points[2],
+                            points[3],
+                            points[4],
+                            points[5],
+                        )
                     elif code == Path.CLOSEPOLY:
                         path_segments.closed_path(points[0], points[1])
 
@@ -193,17 +203,19 @@ class ChartRenderer(RendererBase):
         # TODO: Winforms canvas doesn't support math mode text (yet!)
         # Do a minimalist attempt at stripping the math markup and turn the
         # string into a non-math string.
-        if sys.platform == 'win32':
+        if sys.platform == "win32":
             ismath = False
-            s = s.replace('$', '')
+            s = s.replace("$", "")
 
         # Math mode text must be rendered using paths.
         # Otherwise, we can use canvas-level text markup.
         if ismath:
-            path, transform = self._get_text_path_transform(x, y, s, prop, angle, ismath)
+            path, transform = self._get_text_path_transform(
+                x, y, s, prop, angle, ismath
+            )
             color = gc.get_rgb()
 
-            gc.set_linewidth(.75)
+            gc.set_linewidth(0.75)
             self.draw_path(gc, path, transform, rgbFace=color)
         else:
             self._canvas.translate(x, y)
