@@ -19,19 +19,25 @@ jobs:
   pre-commit:
     name: Pre-commit checks
     uses: beeware/.github/.github/workflows/pre-commit-run.yml@main
+    with:
+      runner-os: macos-latest
 
   towncrier:
     name: Check towncrier
     uses: beeware/.github/.github/workflows/towncrier-run.yml@main
+    with:
+      runner-os: macos-latest
 
   package:
     name: Python Package
     uses: beeware/.github/.github/workflows/python-package-create.yml@main
+    with:
+      runner-os: macos-latest
 
   unit-tests:
     name: Python compatibility test
     needs: [pre-commit, towncrier, package]
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
