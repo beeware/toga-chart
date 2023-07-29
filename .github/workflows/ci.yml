@@ -28,42 +28,42 @@ jobs:
     name: Python Package
     uses: beeware/.github/.github/workflows/python-package-create.yml@main
 
-  # unit-tests:
-  #   name: Unit tests
-  #   needs: [pre-commit, towncrier, package]
-  #   runs-on: ${{ matrix.platform }}
-  #   continue-on-error: ${{ matrix.experimental }}
-  #   strategy:
-  #     matrix:
-  #       platform: [ "macOS-11", "macOS-12" ]
-  #       python-version: [ "3.8", "3.9", "3.10", "3.11", "3.12-dev" ]
-  #       include:
-  #         - experimental: false
-  #         - python-version: "3.12-dev"
-  #           experimental: true
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v3.5.3
-  #     with:
-  #       fetch-depth: 0
+  unit-tests:
+    name: Python compatibility test
+    needs: [pre-commit, towncrier, package]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        include:
+          - experimental: false
 
-  #   - name: Set up Python ${{ matrix.python-version }}
-  #     uses: actions/setup-python@v4.7.0
-  #     with:
-  #       python-version: ${{ matrix.python-version }}
+          - python-version: "3.12"
+            experimental: true
 
-  #   - name: Get packages
-  #     uses: actions/download-artifact@v3.0.2
-  #     with:
-  #       name: ${{ needs.package.outputs.artifact-name }}
-  #       path: dist
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3.5.3
+      with:
+        fetch-depth: 0
 
-  #   - name: Install dev dependencies
-  #     run: |
-  #       # We don't actually want to install rubicon;
-  #       # we just want the dev extras so we have a known version of tox.
-  #       python -m pip install $(ls dist/rubicon_objc-*.whl)[dev]
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4.7.0
+      with:
+        python-version: ${{ matrix.python-version }}
 
-  #   - name: Test
-  #     run: |
-  #       tox -e py --installpkg dist/rubicon_objc-*.whl
+    - name: Get packages
+      uses: actions/download-artifact@v3.0.2
+      with:
+        name: ${{ needs.package.outputs.artifact-name }}
+        path: dist
+
+    - name: Install dev dependencies
+      run: |
+        # We don't actually want to install toga_chart;
+        # we just want the dev extras so we have a known version of tox.
+        python -m pip install $(ls dist/toga_chart-*.whl)[dev]
+
+    - name: Test
+      run: |
+        tox -e py --installpkg dist/toga_chart-*.whl
