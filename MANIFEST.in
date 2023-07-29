@@ -1,8 +1,9 @@
+include .pre-commit-config.yaml
+include .readthedocs.yaml
 include CONTRIBUTING.md
 include README.rst
 include AUTHORS
 include LICENSE
-include requirements*.txt
 include examples/pyproject.toml
 include examples/README.rst
 include tox.ini
