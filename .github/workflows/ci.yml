@@ -4,116 +4,66 @@ on:
   push:
     branches:
       - main
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: "Name of the uploaded artifact; use for artifact retrieval."
+        value: ${{ jobs.package.outputs.artifact-name }}
+
+# Cancel active CI runs for a PR before starting another run
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  beefore:
-    name: Pre-test checks
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        task:
-        - 'flake8'
-        - 'towncrier-check'
-        - 'docs'
-        - 'package'
-    steps:
-    - uses: actions/checkout@v1
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        sudo apt-get install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0 python3-dev libgirepository1.0-dev libcairo2-dev pkg-config
-        pip install --upgrade pip
-        pip install --upgrade setuptools
-        pip install tox
-    - name: Run pre-test check
-      run: |
-        tox -e ${{ matrix.task }}
+  pre-commit:
+    name: Pre-commit checks
+    uses: beeware/.github/.github/workflows/pre-commit-run.yml@main
 
-  # smoke:
-  #   name: Smoke test (3.5)
-  #   needs: beefore
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Set up Python 3.5
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: 3.5
-  #   - name: Install dependencies
-  #     run: |
-  #       sudo apt-get install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0 python3-dev libgirepository1.0-dev libcairo2-dev pkg-config
-  #       pip install --upgrade pip
-  #       pip install --upgrade setuptools
-  #       pip install tox
-  #   - name: Test
-  #     run: |
-  #       tox -e py
+  towncrier:
+    name: Check towncrier
+    uses: beeware/.github/.github/workflows/towncrier-run.yml@main
 
-  # python-versions:
-  #   # Only run this and subsequent steps on branches.
-  #   # `github.head_ref` only exists on pull requests.
-  #   if: github.head_ref
-  #   name: Python compatibility test
-  #   needs: smoke
-  #   runs-on: ubuntu-latest
+  package:
+    name: Python Package
+    uses: beeware/.github/.github/workflows/python-package-create.yml@main
+
+  # unit-tests:
+  #   name: Unit tests
+  #   needs: [pre-commit, towncrier, package]
+  #   runs-on: ${{ matrix.platform }}
+  #   continue-on-error: ${{ matrix.experimental }}
   #   strategy:
-  #     max-parallel: 4
   #     matrix:
-  #       python-version: [3.6, 3.7, 3.8]
+  #       platform: [ "macOS-11", "macOS-12" ]
+  #       python-version: [ "3.8", "3.9", "3.10", "3.11", "3.12-dev" ]
+  #       include:
+  #         - experimental: false
+  #         - python-version: "3.12-dev"
+  #           experimental: true
   #   steps:
-  #   - uses: actions/checkout@v1
+  #   - name: Checkout
+  #     uses: actions/checkout@v3.5.3
+  #     with:
+  #       fetch-depth: 0
+
   #   - name: Set up Python ${{ matrix.python-version }}
-  #     uses: actions/setup-python@v1
+  #     uses: actions/setup-python@v4.7.0
   #     with:
   #       python-version: ${{ matrix.python-version }}
-  #   - name: Install dependencies
-  #     run: |
-  #       pip install --upgrade pip
-  #       pip install --upgrade setuptools
-  #       pip install tox
-  #   - name: Test
-  #     run: |
-  #       tox -e py
 
-  # windows:
-  #   name: Windows tests
-  #   needs: python-versions
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Set up Python 3.8
-  #     uses: actions/setup-python@v1
+  #   - name: Get packages
+  #     uses: actions/download-artifact@v3.0.2
   #     with:
-  #       python-version: 3.8
-  #   - name: Install dependencies
-  #     run: |
-  #       pip install --upgrade pip
-  #       pip install --upgrade setuptools
-  #       pip install tox
-  #   - name: Test
-  #     run: |
-  #       tox -e py
+  #       name: ${{ needs.package.outputs.artifact-name }}
+  #       path: dist
 
-  # macOS:
-  #   name: macOS tests
-  #   needs: python-versions
-  #   runs-on: macOS-latest
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Set up Python 3.8
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: 3.8
-  #   - name: Install dependencies
+  #   - name: Install dev dependencies
   #     run: |
-  #       sudo apt-get install -y python3-gi python3-gi-cairo gir1.2-gtk-3.0 python3-dev libgirepository1.0-dev libcairo2-dev pkg-config
-  #       pip install --upgrade pip
-  #       pip install --upgrade setuptools
-  #       pip install tox
+  #       # We don't actually want to install rubicon;
+  #       # we just want the dev extras so we have a known version of tox.
+  #       python -m pip install $(ls dist/rubicon_objc-*.whl)[dev]
+
   #   - name: Test
   #     run: |
-  #       tox -e py
+  #       tox -e py --installpkg dist/rubicon_objc-*.whl
