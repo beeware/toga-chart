@@ -21,8 +21,9 @@ Toga Chart
    :target: https://github.com/beeware/toga-chart/actions
    :alt: Build Status
 
-.. image:: https://badges.gitter.im/beeware/general.svg
-    :target: https://gitter.im/beeware/general
+.. image:: https://img.shields.io/discord/836455665257021440?label=Discord%20Chat&logo=discord&style=plastic
+   :target: https://beeware.org/bee/chat/
+   :alt: Discord server
 
 A `Matplotlib <https://matplotlib.org/>`__ chart widget for `Toga
 <https://github.com/beeware/toga>`__.
@@ -52,14 +53,14 @@ Community
 ---------
 
 Toga Chart is a widget for Toga, which is part of the `BeeWare suite
-<http://beeware.org>`__. You can talk to the community through:
+<https://beeware.org>`__. You can talk to the community through:
 
-* `@pybeeware on Twitter <https://twitter.com/pybeeware>`__
+* `@beeware@fosstodon.org on Mastodon <https://fosstodon.org/@beeware>`__
 
-* The `beeware/general <https://gitter.im/beeware/general>`__ channel on Gitter.
+* `Discord <https://beeware.org/bee/chat/>`__
 
 We foster a welcoming and respectful community as described in our
-`BeeWare Community Code of Conduct <http://beeware.org/community/behavior/>`__.
+`BeeWare Community Code of Conduct <https://beeware.org/community/behavior/>`__.
 
 Contributing
 ------------
