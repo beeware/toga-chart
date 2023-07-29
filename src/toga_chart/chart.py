@@ -6,8 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 from toga import Canvas, Widget
-from toga.colors import color as parse_color
-from toga.colors import rgba
+from toga.colors import color as parse_color, rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
 

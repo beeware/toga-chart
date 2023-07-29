@@ -10,8 +10,9 @@
 # serve to show the default.
 
 import os
-import re
 import sys
+
+from importlib.metadata import version as metadata_version
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -25,7 +26,13 @@ sys.path.insert(0, os.path.abspath("../src"))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.todo", "sphinx_tabs.tabs"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.todo",
+    "sphinx_tabs.tabs",
+    "sphinx_copybutton",
+    "sphinx.ext.intersphinx",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -47,15 +54,10 @@ copyright = "2019, Russell Keith-Magee"
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-# The full version, including alpha/beta/rc tags.
-with open("../src/toga_chart/__init__.py", encoding="utf8") as version_file:
-    version_match = re.search(
-        r"^__version__ = ['\"]([^'\"]*)['\"]", version_file.read(), re.M
-    )
-    if version_match:
-        release = version_match.group(1)
-    else:
-        raise RuntimeError("Unable to find version string.")
+# The full version, including alpha/beta/rc tags
+release = metadata_version("toga_chart")
+# The short X.Y version
+version = ".".join(release.split(".")[:2])
 
 # The short X.Y version.
 version = ".".join(release.split(".")[:2])
@@ -97,19 +99,48 @@ pygments_style = "sphinx"
 # modindex_common_prefix = []
 
 
+# -- Options for link checking -------------------------------------------------
+
+linkcheck_anchors_ignore = [
+    # Ignore anchor detection/verification for Apple help links
+    # e.g.: https://help.apple.com/xcode/mac/current/#/dev97211aeac
+    "^/dev[0-9a-f]{9}$"
+]
+
+# -- Options for copy button ---------------------------------------------------
+
+# virtual env prefix: (venv), (beeware-venv), (testenv)
+venv = r"\((?:(?:beeware-)?venv|testvenv)\)"
+# macOS and Linux shell prompt: $
+shell = r"\$"
+# win CMD prompt: C:\>, C:\...>
+cmd = r"C:\\>|C:\\\.\.\.>"
+# PowerShell prompt: PS C:\>, PS C:\...>
+ps = r"PS C:\\>|PS C:\\\.\.\.>"
+# zero or one whitespace char
+sp = r"\s?"
+
+# optional venv prefix
+venv_prefix = rf"(?:{venv})?"
+# one of the platforms' shell prompts
+shell_prompt = rf"(?:{shell}|{cmd}|{ps})"
+
+copybutton_prompt_text = "|".join(
+    [
+        # Python REPL
+        # r">>>\s?", r"\.\.\.\s?",
+        # IPython and Jupyter
+        # r"In \[\d*\]:\s?", r" {5,8}:\s?", r" {2,5}\.\.\.:\s?",
+        # Shell prompt
+        rf"{venv_prefix}{sp}{shell_prompt}{sp}",
+    ]
+)
+copybutton_prompt_is_regexp = True
+copybutton_remove_prompts = True
+copybutton_only_copy_prompt_lines = True
+copybutton_copy_empty_lines = False
+
 # -- Options for HTML output ---------------------------------------------------
-
-# on_rtd: whether we are on readthedocs.org
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
-
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    try:
-        import sphinx_rtd_theme
-    except ImportError:
-        html_theme = "default"
-    else:
-        html_theme = "sphinx_rtd_theme"
-        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -121,7 +152,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-# html_title = None
+html_title = f"Toga Chart {release}"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 # html_short_title = None
@@ -184,24 +215,17 @@ html_static_path = ["_static"]
 # Output file base name for HTML help builder.
 htmlhelp_basename = "toga-chartdoc"
 
-try:
-    import sphinx_rtd_theme
-
-    html_theme = "sphinx_rtd_theme"
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-except ImportError:
-    # The sphinx-rtd-theme package is not installed, so to the default
-    pass
+html_theme = "furo"
 
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
-    #'papersize': 'letterpaper',
+    # 'papersize': 'letterpaper',
     # The font size ('10pt', '11pt' or '12pt').
-    #'pointsize': '10pt',
+    # 'pointsize': '10pt',
     # Additional stuff for the LaTeX preamble.
-    #'preamble': '',
+    # 'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -258,9 +282,9 @@ texinfo_documents = [
     (
         "index",
         "toga-chart",
-        "Toga-Chart Documentation",
+        "Toga Chart Documentation",
         "Russell Keith-Magee",
-        "Toga-Chart",
+        "Toga Chart",
         "Tools to support development of Python on mobile platforms.",
         "Miscellaneous",
     ),
