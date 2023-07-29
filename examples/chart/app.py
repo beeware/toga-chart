@@ -1,8 +1,9 @@
-import toga
-import toga_chart
-from toga.style import Pack
 import numpy as np
+import toga
 from toga.constants import COLUMN
+from toga.style import Pack
+
+import toga_chart
 
 
 class ExampleChartApp(toga.App):
@@ -14,7 +15,6 @@ class ExampleChartApp(toga.App):
         self.x = self.MU + self.SIGMA * np.random.randn(437)
 
     def draw_chart(self, chart, figure, *args, **kwargs):
-
         num_bins = 50
 
         # Add a subplot that is a histogram of the data,
@@ -23,12 +23,14 @@ class ExampleChartApp(toga.App):
         n, bins, patches = ax.hist(self.x, num_bins, density=1)
 
         # add a 'best fit' line
-        y = ((1 / (np.sqrt(2 * np.pi) * self.SIGMA)) * np.exp(-0.5 * (1 / self.SIGMA * (bins - self.MU))**2))
-        ax.plot(bins, y, '--')
+        y = (1 / (np.sqrt(2 * np.pi) * self.SIGMA)) * np.exp(
+            -0.5 * (1 / self.SIGMA * (bins - self.MU)) ** 2
+        )
+        ax.plot(bins, y, "--")
 
-        ax.set_xlabel('Value')
-        ax.set_ylabel('Probability density')
-        ax.set_title(r'Histogram: $\mu=100$, $\sigma=15$')
+        ax.set_xlabel("Value")
+        ax.set_ylabel("Probability density")
+        ax.set_title(r"Histogram: $\mu=100$, $\sigma=15$")
 
         figure.tight_layout()
 
@@ -48,17 +50,17 @@ class ExampleChartApp(toga.App):
         self.main_window.content = toga.Box(
             children=[
                 self.chart,
-                toga.Button("Recreate data", on_press=self.recreate_data)
+                toga.Button("Recreate data", on_press=self.recreate_data),
             ],
-            style=Pack(direction=COLUMN)
+            style=Pack(direction=COLUMN),
         )
 
         self.main_window.show()
 
 
 def main():
-    return ExampleChartApp('Chart', 'org.beeware.widgets.chart')
+    return ExampleChartApp("Chart", "org.beeware.widgets.chart")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main().main_loop()

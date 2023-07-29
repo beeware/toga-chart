@@ -1,19 +1,21 @@
-include CONTRIBUTING.md
-include README.rst
+include .pre-commit-config.yaml
+include .readthedocs.yaml
 include AUTHORS
-include LICENSE
-include requirements*.txt
+include CONTRIBUTING.md
+include docs/spelling_wordlist
 include examples/pyproject.toml
 include examples/README.rst
+include LICENSE
+include README.rst
 include tox.ini
+recursive-exclude docs/_build *
 recursive-include changes *.rst
-recursive-include examples *.py
-recursive-include src *.py
-recursive-include tests *.py
 recursive-include docs *.bat
 recursive-include docs *.png
 recursive-include docs *.py
 recursive-include docs *.rst
 recursive-include docs *.txt
 recursive-include docs Makefile
-recursive-exclude docs/_build *
+recursive-include examples *.py
+recursive-include src *.py
+recursive-include tests *.py
