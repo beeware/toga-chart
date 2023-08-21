@@ -1,2 +1,1 @@
-Updated furo from 2023.7.26 to 2023.8.19.
-Pinned Sphinx on Python 3.8 because they deprecated it.
+A separate Sphinx pin was added for Python 3.8, because Sphinx 7.2 deprecated sypport for Python 3.8.
