@@ -1,0 +1,1 @@
+The CI job to update pre-commit hooks now successfully runs.
