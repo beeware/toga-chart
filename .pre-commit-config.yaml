@@ -21,8 +21,15 @@ repos:
   - repo: https://github.com/psf/black
     rev: 23.7.0
     hooks:
-    - id: black
+      - id: black
   - repo: https://github.com/PyCQA/flake8
     rev: 6.0.0
     hooks:
       - id: flake8
+  - repo: local
+    hooks:
+      - id: ensure-changelog
+        name: ensure-changelog
+        entry: bash -c 'bin/ensure_changelog.sh'
+        language: system
+        pass_filenames: false

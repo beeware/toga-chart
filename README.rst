@@ -48,7 +48,10 @@ Dependencies
 
 * pygobject
 If pip installation fails with the error
+
 ```ERROR: Could not build wheels for pygobject, which is required to install pyproject.toml-based projects```
+
+install libgirepository1.0-dev with the command:
 
     $ sudo apt install libgirepository1.0-dev
 
