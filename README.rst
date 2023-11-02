@@ -43,6 +43,15 @@ To get started using Toga Chart, run the following::
     (venv) $ cd examples
     (venv) $ python -m chart
 
+Dependencies
+-------------
+
+* pygobject
+If pip installation fails with the error
+```ERROR: Could not build wheels for pygobject, which is required to install pyproject.toml-based projects```
+
+    $ sudo apt install libgirepository1.0-dev
+
 Documentation
 -------------
 
