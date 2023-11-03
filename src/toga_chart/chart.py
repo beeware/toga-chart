@@ -80,7 +80,7 @@ class Chart(Widget):
         # This is where the user adds the matplotlib draw instructions
         # to construct the chart, so it needs to happen before the
         # figure is rendered onto the canvas.
-        self.on_draw(self, figure=figure)
+        self.on_draw(figure=figure)
 
         figure.draw(renderer)
 
