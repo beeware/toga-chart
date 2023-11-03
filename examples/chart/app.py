@@ -43,7 +43,7 @@ class ExampleChartApp(toga.App):
         self.set_data()
 
         # Set up main window
-        self.main_window = toga.MainWindow(title=self.name)
+        self.main_window = toga.MainWindow()
 
         self.chart = toga_chart.Chart(style=Pack(flex=1), on_draw=self.draw_chart)
 

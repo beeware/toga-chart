@@ -9,9 +9,17 @@ jobs:
   ci:
     uses: ./.github/workflows/ci.yml
 
+  docs:
+    name: Verify Docs Build
+    uses: beeware/.github/.github/workflows/docs-build-verify.yml@main
+    secrets: inherit
+    with:
+      project-name: "toga-chart"
+      project-version: ${{ github.ref_name }}
+
   release:
     name: Create Release
-    needs: ci
+    needs: [ ci, docs ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -54,4 +62,4 @@ jobs:
       - name: Publish release to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
