@@ -7,42 +7,45 @@ bundle = "org.beeware"
 version = "0.1"
 url = "https://beeware.org"
 license = "BSD license"
-author = 'Tiberius Yak'
+author = "Tiberius Yak"
 author_email = "tiberius@beeware.org"
 
 [tool.briefcase.app.chart]
 formal_name = "Chart Demo"
 description = "A testing app for Toga Chart"
-sources = ['chart']
-requires = []
+sources = ["chart"]
+requires = [
+    # Replace "toga-chart" with ".." to test against the current code checkout.
+    # To run a current code checkout test on Android, you'll need to copy the
+    # "examples" folder into a location that isn't a subdirectory of "..", and
+    # use the appropriate folder reference for the new location.
+    "toga-chart",
+]
 
 [tool.briefcase.app.chart.macOS]
 requires = [
-    'toga-cocoa',
-    '..',
+    "toga-cocoa",
+    "std-nslog",
 ]
 
 [tool.briefcase.app.chart.linux]
 requires = [
-    'toga-gtk',
-    '..',
+    "toga-gtk",
 ]
 
 [tool.briefcase.app.chart.windows]
 requires = [
-    'toga-winforms',
-    '..',
+    "toga-winforms",
 ]
 
 # Mobile deployments
 [tool.briefcase.app.chart.iOS]
 requires = [
-    'toga-iOS',
-    '..',
+    "toga-iOS",
+    "std-nslog",
 ]
 
 [tool.briefcase.app.chart.android]
 requires = [
-    'toga-android',
-    '..',
+    "toga-android",
 ]

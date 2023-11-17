@@ -14,7 +14,11 @@ jobs:
       - uses: dsaltares/fetch-gh-release-asset@1.1.1
         with:
           version: tags/${{ github.event.release.tag_name }}
-          file: ${{ github.event.repository.name }}.*
+          # This next line is *not* a bash filename expansion - it's a regex. We
+          # need to match all files that start with toga, so that we get
+          # toga-chart.* and toga_chart.*, but not the "Source code" zip and
+          # tarball.
+          file: toga.*
           regex: true
           target: dist/
 

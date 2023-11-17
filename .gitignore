@@ -108,3 +108,6 @@ runtime/
 # IDE
 .idea/
 .vscode/
+
+# direnv configuration
+.envrc
