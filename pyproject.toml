@@ -1,6 +1,74 @@
 [build-system]
-requires = ["setuptools>=60", "setuptools_scm[toml]>=7.0"]
+requires = [
+    # keep versions in sync with automation/pyproject.toml
+    "setuptools==69.0.0",
+    "setuptools_scm==8.0.4",
+]
 build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "toga-chart"
+description = "A Toga matplotlib backend."
+readme = "README.rst"
+requires-python = ">= 3.8"
+license.text = "New BSD"
+authors = [
+    {name="Russell Keith-Magee", email="russell@keith-magee.com"},
+]
+maintainers = [
+    {name="BeeWare Team", email="team@beeware.org"},
+]
+keywords = [
+    "matplotlib",
+    "toga",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: User Interfaces",
+]
+
+[project.optional-dependencies]
+# Extras used by developers *of* briefcase are pinned to specific versions to
+# ensure environment consistency.
+dev = [
+    # Pre-commit 3.6.0 deprecated support for Python 3.8
+    "pre-commit == 3.5.0 ; python_version < '3.9'",
+    "pre-commit == 3.6.0 ; python_version >= '3.9'",
+    "pytest == 7.4.3",
+    "setuptools_scm == 8.0.4",
+    "tox == 4.11.4",
+    "toga-dummy >= 0.4.0",
+]
+docs = [
+    "furo == 2023.9.10",
+    "pyenchant == 3.2.2",
+    # Sphinx 7.2 deprecated support for Python 3.8
+    "sphinx == 7.1.2 ; python_version < '3.9'",
+    "sphinx == 7.2.6 ; python_version >= '3.9'",
+    "sphinx_tabs == 3.4.4",
+    "sphinx-autobuild == 2021.3.14",
+    "sphinx-copybutton == 0.5.2",
+    "sphinxcontrib-spelling == 8.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/beeware/toga-chart"
+Funding = "https://beeware.org/contributing/membership/"
+Documentation = "https://toga-chart.readthedocs.io/en/latest/"
+Tracker = "https://github.com/beeware/toga-chart/issues"
+Source = "https://github.com/beeware/toga-chart"
 
 [tool.isort]
 profile = "black"
