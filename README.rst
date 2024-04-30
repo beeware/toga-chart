@@ -1,29 +1,37 @@
-.. image:: https://beeware.org/project/projects/libraries/toga/toga.png
+.. |logo| image:: https://beeware.org/project/projects/libraries/toga/toga.png
     :width: 72px
     :target: https://beeware.org/toga
+
+.. |pyversions| image:: https://img.shields.io/pypi/pyversions/toga-chart.svg
+    :target: https://pypi.python.org/pypi/toga-chart
+    :alt: Python Versions
+
+.. |version| image:: https://img.shields.io/pypi/v/toga-chart.svg
+    :target: https://pypi.python.org/pypi/toga-chart
+    :alt: Project version
+
+.. |maturity| image:: https://img.shields.io/pypi/status/toga-chart.svg
+    :target: https://pypi.python.org/pypi/toga-chart
+    :alt: Project status
+
+.. |license| image:: https://img.shields.io/pypi/l/toga-chart.svg
+    :target: https://github.com/beeware/toga-chart/blob/main/LICENSE
+    :alt: BSD License
+
+.. |ci| image:: https://github.com/beeware/toga-chart/workflows/CI/badge.svg?branch=main
+   :target: https://github.com/beeware/toga-chart/actions
+   :alt: Build Status
+
+.. |social| image:: https://img.shields.io/discord/836455665257021440?label=Discord%20Chat&logo=discord&style=plastic
+   :target: https://beeware.org/bee/chat/
+   :alt: Discord server
+
+|logo|
 
 Toga Chart
 ==========
 
-.. image:: https://img.shields.io/pypi/pyversions/toga-chart.svg
-    :target: https://pypi.python.org/pypi/toga-chart
-
-.. image:: https://img.shields.io/pypi/v/toga-chart.svg
-    :target: https://pypi.python.org/pypi/toga-chart
-
-.. image:: https://img.shields.io/pypi/status/toga-chart.svg
-    :target: https://pypi.python.org/pypi/toga-chart
-
-.. image:: https://img.shields.io/pypi/l/toga-chart.svg
-    :target: https://github.com/beeware/toga-chart/blob/main/LICENSE
-
-.. image:: https://github.com/beeware/toga-chart/workflows/CI/badge.svg?branch=main
-   :target: https://github.com/beeware/toga-chart/actions
-   :alt: Build Status
-
-.. image:: https://img.shields.io/discord/836455665257021440?label=Discord%20Chat&logo=discord&style=plastic
-   :target: https://beeware.org/bee/chat/
-   :alt: Discord server
+|pyversions| |version| |maturity| |license| |ci| |social|
 
 A `Matplotlib <https://matplotlib.org/>`__ chart widget for `Toga
 <https://github.com/beeware/toga>`__.
