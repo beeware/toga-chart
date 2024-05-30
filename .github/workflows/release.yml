@@ -7,7 +7,10 @@ on:
 
 jobs:
   ci:
+    name: CI
     uses: ./.github/workflows/ci.yml
+    with:
+      attest-package: "true"
 
   docs:
     name: Verify Docs Build
@@ -26,7 +29,7 @@ jobs:
       # This permission is required for trusted publishing.
       id-token: write
     steps:
-      - name: Set build variables
+      - name: Set Build Variables
         run: |
           echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
 
@@ -35,13 +38,13 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Get packages
+      - name: Get Package
         uses: actions/download-artifact@v4.1.7
         with:
           name: ${{ needs.ci.outputs.artifact-name }}
           path: dist
 
-      - name: Install packages
+      - name: Install Package
         run: pip install dist/*.whl
 
       - name: Check version number
