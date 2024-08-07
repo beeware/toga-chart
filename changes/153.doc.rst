@@ -1,1 +1,1 @@
-Building toga-charts's documentation now requires the use of Python 3.12.
+Building toga-chart's documentation now requires the use of Python 3.12.
