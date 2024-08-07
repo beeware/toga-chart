@@ -50,7 +50,7 @@ dev = [
     "tox == 4.16.0",
     "toga-dummy >= 0.4.0",
 ]
-# Docs are always built on Py3.12; see RTD and tox config files.
+# Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
     "furo == 2024.7.18",
     "pyenchant == 3.2.2",
