@@ -44,6 +44,12 @@ class Chart(Widget):
 
         super().__init__(id=id, style=style)
 
+        if not self._impl:
+            # Backwards compatibility for Toga 0.4.8, which does not call the _create()
+            # method in Widget.__init__()
+            self._create()
+
+    def _create(self):
         self._impl = self.canvas._impl
 
     @Widget.app.setter
