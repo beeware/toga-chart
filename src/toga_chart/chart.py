@@ -44,6 +44,7 @@ class Chart(Widget):
 
         super().__init__(id=id, style=style)
 
+    def _create(self):
         self._impl = self.canvas._impl
 
     @Widget.app.setter
