@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-    "setuptools==75.3.0",
-    "setuptools_scm==8.1.0",
+    "setuptools==76.0.0",
+    "setuptools_scm==8.2.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -10,7 +10,7 @@ dynamic = ["version"]
 name = "toga-chart"
 description = "A Toga matplotlib backend."
 readme = "README.rst"
-requires-python = ">= 3.8"
+requires-python = ">= 3.9"
 license.text = "New BSD"
 authors = [
     {name="Russell Keith-Magee", email="russell@keith-magee.com"},
@@ -28,11 +28,11 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3 :: Only",
     "Topic :: Software Development",
     "Topic :: Software Development :: User Interfaces",
@@ -42,23 +42,22 @@ classifiers = [
 # Extras used by developers *of* briefcase are pinned to specific versions to
 # ensure environment consistency.
 dev = [
-    # Pre-commit 3.6.0 deprecated support for Python 3.8
-    "pre-commit == 3.5.0 ; python_version < '3.9'",
-    "pre-commit == 4.0.1 ; python_version >= '3.9'",
-    "pytest == 8.3.3",
-    "setuptools_scm == 8.1.0",
-    "tox == 4.23.2",
+    "pre-commit == 4.1.0",
+    "pytest == 8.3.5",
+    "setuptools_scm == 8.2.0",
+    "tox == 4.24.2",
+    "toga-dummy >= 0.4.0",
     "toga-dummy >= 0.5.0, < 0.6.0",
 ]
 # Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
     "furo == 2024.8.6",
     "pyenchant == 3.2.2",
-    "sphinx == 8.1.3",
+    "sphinx == 8.2.3",
     "sphinx_tabs == 3.4.7",
     "sphinx-autobuild == 2024.10.3",
     "sphinx-copybutton == 0.5.2",
-    "sphinxcontrib-spelling == 8.0.0",
+    "sphinxcontrib-spelling == 8.0.1",
 ]
 
 [project.urls]
