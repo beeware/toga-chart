@@ -38,7 +38,7 @@ classifiers = [
     "Topic :: Software Development :: User Interfaces",
 ]
 dependencies = [
-    "matplotlib >= 3.10.1",
+    "matplotlib >= 3.9.0",
     "toga-core >= 0.5.0, < 0.6.0",
 ]
 
