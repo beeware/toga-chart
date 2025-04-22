@@ -66,16 +66,16 @@ class ExampleChartApp(toga.App):
                 self.chart,
                 toga.Box(
                     children=[toga.Label("𝜇"), self.mu],
-                    style=Pack(padding=(5, 10)),
+                    style=Pack(margin=(5, 10)),
                 ),
                 toga.Box(
                     children=[toga.Label("𝜎"), self.sigma],
-                    style=Pack(padding=(5, 10)),
+                    style=Pack(margin=(5, 10)),
                 ),
                 toga.Button(
                     "Recreate data",
                     on_press=self.recreate_data,
-                    style=Pack(padding=(10, 10, 20, 10)),
+                    style=Pack(margin=(10, 10, 20, 10)),
                 ),
             ],
             style=Pack(direction=COLUMN),

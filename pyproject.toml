@@ -37,6 +37,10 @@ classifiers = [
     "Topic :: Software Development",
     "Topic :: Software Development :: User Interfaces",
 ]
+dependencies = [
+    "matplotlib >= 3.9.0",
+    "toga-core >= 0.5.0, < 0.6.0",
+]
 
 [project.optional-dependencies]
 # Extras used by developers *of* briefcase are pinned to specific versions to
@@ -46,7 +50,7 @@ dev = [
     "pytest == 8.3.5",
     "setuptools_scm == 8.2.0",
     "tox == 4.25.0",
-    "toga-dummy >= 0.4.0",
+    "toga-dummy >= 0.5.0, < 0.6.0",
 ]
 # Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
