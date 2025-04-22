@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools==76.0.0",
+    "setuptools==79.0.0",
     "setuptools_scm==8.2.0",
 ]
 build-backend = "setuptools.build_meta"
@@ -46,10 +46,10 @@ dependencies = [
 # Extras used by developers *of* briefcase are pinned to specific versions to
 # ensure environment consistency.
 dev = [
-    "pre-commit == 4.1.0",
+    "pre-commit == 4.2.0",
     "pytest == 8.3.5",
     "setuptools_scm == 8.2.0",
-    "tox == 4.24.2",
+    "tox == 4.25.0",
     "toga-dummy >= 0.5.0, < 0.6.0",
 ]
 # Docs are always built on a specific Python version; see RTD and tox config files.
