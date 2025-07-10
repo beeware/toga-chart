@@ -1,27 +1,19 @@
-The toga-chart Developer and User community
-===========================================
+Community
+---------
 
-Toga-chart is part of the `BeeWare suite <http://beeware.org>`__. You can talk
-to the community through:
+toga-chart is part of the `BeeWare suite <https://beeware.org>`__. You can talk to the
+community through:
 
-* `@pybeeware on Twitter <https://twitter.com/pybeeware>`__
-* `BeeWare Getting Help page <https://beeware.org/community/getting-help/>`__
+* `@beeware@fosstodon.org on Mastodon <https://fosstodon.org/@beeware>`__
 
-Code of Conduct
----------------
+* `Discord <https://beeware.org/bee/chat/>`__
 
-The BeeWare community has a strict `Code of Conduct
-<http://beeware.org/contributing/index.html>`__. All users and developers are
-expected to adhere to this code.
-
-If you have any concerns about this code of conduct, or you wish to report a
-violation of this code, please contact the project founder `Russell
-Keith-Magee <mailto:russell@keith-magee.com>`__.
+We foster a welcoming and respectful community as described in our `BeeWare Community
+Code of Conduct <https://beeware.org/community/behavior/>`__.
 
 Contributing
 ------------
 
-If you experience problems with toga-chart, `log them on GitHub
-<https://github.com/beeware/toga-chart/issues>`__. If you want to contribute
-code, please `fork the code <https://github.com/beeware/toga-chart>`__ and
-`submit a pull request <https://github.com/beeware/toga-chart/pulls>`__.
+If you experience problems with toga-chart, `log them on GitHub <https://github.com/beeware/toga-chart/issues>`__.
+
+If you want to contribute, please `fork the project <https://github.com/beeware/toga-chart>`__ and `submit a pull request <https://github.com/beeware/toga-chart/pulls>`__.
