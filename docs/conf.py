@@ -315,11 +315,13 @@ spelling_ignore_pypi_package_names = True
 
 # -- Options for Todos -------------------------------------------
 
-# If this is True, todo and todolist produce output, else they produce nothing. The default is False.
+# If this is True, todo and todolist produce output, else they produce nothing.
+# The default is False.
 todo_include_todos = True
 
 # If this is True, todo emits a warning for each TODO entries. The default is False.
 # todo_emit_warnings = False
 
-# If this is True, todolist produce output without file path and line, The default is False.
+# If this is True, todolist produce output without file path and line,
+# The default is False.
 # todo_link_only = False
