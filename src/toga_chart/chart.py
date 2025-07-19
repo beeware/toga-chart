@@ -6,7 +6,8 @@ from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 from toga import Canvas, Widget
-from toga.colors import color as parse_color, rgba
+from toga.colors import color as parse_color
+from toga.colors import rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
 
@@ -74,7 +75,7 @@ class Chart(Widget):
 
         :param figure: The matplotlib figure to draw
         """
-        l, b, w, h = figure.bbox.bounds
+        _, b, w, h = figure.bbox.bounds
         renderer = ChartRenderer(self.canvas, w, h)
 
         # Invoke the on_draw handler.

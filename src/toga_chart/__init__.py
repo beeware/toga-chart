@@ -19,7 +19,4 @@ except (ModuleNotFoundError, LookupError):
 
     __version__ = version("toga_chart")
 
-__all__ = [
-    "Chart",
-    "toga_chart",
-]
+__all__ = ["Chart"]
