@@ -111,3 +111,6 @@ runtime/
 
 # direnv configuration
 .envrc
+
+# ruff chache
+.ruff_cache

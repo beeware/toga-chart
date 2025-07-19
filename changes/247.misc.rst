@@ -1,0 +1,1 @@
+Switch from Flake8/isort/Black to Ruff for linting and formattingx

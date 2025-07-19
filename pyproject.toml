@@ -70,11 +70,6 @@ Documentation = "https://toga-chart.readthedocs.io/en/latest/"
 Tracker = "https://github.com/beeware/toga-chart/issues"
 Source = "https://github.com/beeware/toga-chart"
 
-[tool.isort]
-profile = "black"
-split_on_trailing_comma = true
-combine_as_imports = true
-
 [tool.setuptools_scm]
 # To enable SCM versioning, we need an empty tool configuration for setuptools_scm
 
@@ -91,4 +86,32 @@ type = [
     { directory = "removal", name = "Backward Incompatible Changes", showcontent = true },
     { directory = "doc", name = "Documentation", showcontent = true },
     { directory = "misc", name = "Misc", showcontent = false },
+]
+
+[tool.ruff.lint]
+# In addition to the default rules, these additional rules will be used:
+extend-select = [
+    "E",      # pycodestyle
+    "W",      # pycodestyle
+    "F",      # pyflakes
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "YTT",    # flake8-2020
+    "ASYNC",  # flake8-async
+    "C4",     # flake8-comprehensions
+    "I",      # isort
+    # The SIM rules are *very* opinionated, and don't necessarily make for better code.
+    # They may be worth occasionally turning on just to see if something could actually
+    # use improvement.
+    # "SIM",    # flake8-simplify
+]
+
+# Below is a list of ignored rules.  Many (if not all) of these have been disabled
+# to facilitate a smooth transition from tools like black and isort to ruff, where
+# instances of these errors were caught.  Many if not all of these are candidates
+# for future fixes throughout the project.
+ignore = [
+    "E501",    # line length (might work to change line length to 119 instead)
+    "E741",    # Ambiguous variable name
+    "I001",     # Import block is un-sorted or un-formatted
 ]
