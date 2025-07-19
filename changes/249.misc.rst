@@ -1,0 +1,1 @@
+Removed Ruff linting ignores and resolved the issues reported by Ruff
