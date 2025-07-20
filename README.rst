@@ -51,8 +51,9 @@ To get started using Toga Chart, run the following::
     (venv) $ cd examples
     (venv) $ python -m chart
 
-The example above doesn't work on all platforms (i.e. iOS).
-The example below uses Briefcase (the BeeWare packager) to load the toga core and run the the same example::
+Alternatively, you can run the project through Briefcase. If you want to run the example
+application on iOS or Android, this is the approach you'll have to use. To run the
+project with Briefcase, run::
 
     $ git clone https://github.com/beeware/toga-chart
     $ cd toga-chart
