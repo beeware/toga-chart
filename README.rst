@@ -47,7 +47,7 @@ To get started using Toga Chart, run the following::
     $ cd toga-chart
     $ python3 -m venv venv
     $ source venv/bin/activate
-    (venv> $ pip install toga -e .
+    (venv) $ pip install toga -e .
     (venv) $ cd examples
     (venv) $ python -m chart
 
@@ -59,11 +59,9 @@ project with Briefcase, run::
     $ cd toga-chart
     $ python3 -m venv venv
     $ source venv/bin/activate
-    (venv> $ pip install toga -e .
-    (venv) $ pip install -e .
-    (venv> $ pip install briefcase
+    (venv) $ pip install briefcase
     (venv) $ cd examples
-    (venv) $ briefcase dev
+    (venv) $ briefcase run
 
 Documentation
 -------------
