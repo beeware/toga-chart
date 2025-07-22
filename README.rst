@@ -47,9 +47,21 @@ To get started using Toga Chart, run the following::
     $ cd toga-chart
     $ python3 -m venv venv
     $ source venv/bin/activate
-    (venv) $ pip install -e .
+    (venv) $ pip install toga -e .
     (venv) $ cd examples
     (venv) $ python -m chart
+
+Alternatively, you can run the project through Briefcase. If you want to run the example
+application on iOS or Android, this is the approach you'll have to use. To run the
+project with Briefcase, run::
+
+    $ git clone https://github.com/beeware/toga-chart
+    $ cd toga-chart
+    $ python3 -m venv venv
+    $ source venv/bin/activate
+    (venv) $ pip install briefcase
+    (venv) $ cd examples
+    (venv) $ briefcase run
 
 Documentation
 -------------
