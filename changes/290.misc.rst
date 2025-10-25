@@ -1,0 +1,1 @@
+Updates toga-chart to dependency groups., and tox-uv.
