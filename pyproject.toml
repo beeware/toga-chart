@@ -42,16 +42,33 @@ dependencies = [
     "toga-core >= 0.5.0, < 0.6.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 # Extras used by developers *of* briefcase are pinned to specific versions to
 # ensure environment consistency.
-dev = [
+pre-commit = [
     "pre-commit == 4.3.0",
-    "pytest == 8.4.2",
-    "setuptools_scm == 9.2.1",
-    "tox == 4.30.3",
-    "toga-dummy >= 0.5.0, < 0.6.0",
 ]
+
+setuptools-scm = [
+    "setuptools_scm == 9.2.1",
+]
+
+towncrier = [
+    "towncrier==25.8.0",
+]
+
+tox-uv = [
+    "tox-uv == 1.28.0",
+]
+
+dev = [
+    "pytest == 8.4.2",
+    "toga-dummy >= 0.5.0, < 0.6.0",
+    {include-group = "pre-commit"},
+    {include-group = "setuptools-scm"},
+    {include-group = "tox-uv"},
+]
+
 # Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
     "furo == 2025.9.25",
