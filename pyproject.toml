@@ -49,8 +49,8 @@ pre-commit = [
     "pre-commit == 4.3.0",
 ]
 
-setuptools-scm = [
-    "setuptools_scm == 9.2.1",
+test = [
+    "pytest == 8.4.2",
 ]
 
 towncrier = [
@@ -62,10 +62,10 @@ tox-uv = [
 ]
 
 dev = [
-    "pytest == 8.4.2",
+    "setuptools_scm == 9.2.1",
     "toga-dummy >= 0.5.0, < 0.6.0",
     {include-group = "pre-commit"},
-    {include-group = "setuptools-scm"},
+    {include-group = "test"},
     {include-group = "tox-uv"},
 ]
 
