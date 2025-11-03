@@ -62,7 +62,7 @@ tox-uv = [
 ]
 
 dev = [
-    "setuptools_scm == 9.2.1",
+    "setuptools_scm == 9.2.2",
     "toga-dummy >= 0.5.0, < 0.6.0",
     {include-group = "pre-commit"},
     {include-group = "test"},
