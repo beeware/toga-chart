@@ -71,7 +71,7 @@ dev = [
 
 # Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
-    "furo == 2025.9.25",
+    "furo == 2025.12.19",
     "pyenchant == 3.3.0",
     "sphinx == 8.2.3",
     "sphinx_tabs == 3.4.7",
