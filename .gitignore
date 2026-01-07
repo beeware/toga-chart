@@ -114,3 +114,6 @@ runtime/
 
 # ruff chache
 .ruff_cache
+
+# Briefcase
+.briefcase
