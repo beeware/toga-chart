@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools==80.9.0",
+    "setuptools==80.10.2",
     "setuptools_scm==9.2.2",
 ]
 build-backend = "setuptools.build_meta"
@@ -46,11 +46,11 @@ dependencies = [
 # Extras used by developers *of* briefcase are pinned to specific versions to
 # ensure environment consistency.
 pre-commit = [
-    "pre-commit == 4.3.0",
+    "pre-commit == 4.5.1",
 ]
 
 test = [
-    "pytest == 8.4.2",
+    "pytest == 9.0.2",
 ]
 
 towncrier = [
@@ -58,7 +58,7 @@ towncrier = [
 ]
 
 tox-uv = [
-    "tox-uv == 1.28.1",
+    "tox-uv == 1.29.0",
 ]
 
 dev = [
@@ -77,7 +77,7 @@ docs = [
     "sphinx_tabs == 3.4.7",
     "sphinx-autobuild == 2024.10.3",
     "sphinx-copybutton == 0.5.2",
-    "sphinxcontrib-spelling == 8.0.1",
+    "sphinxcontrib-spelling == 8.0.2",
 ]
 
 [project.urls]
