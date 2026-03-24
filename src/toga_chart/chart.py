@@ -10,6 +10,7 @@ from toga.colors import color as parse_color
 from toga.colors import rgba
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
+from travertino.size import at_least
 
 
 class Chart(Widget):
@@ -45,6 +46,9 @@ class Chart(Widget):
 
         super().__init__(id=id, style=style)
 
+        self.intrinsic.height = at_least(self._MIN_HEIGHT)
+        self.intrinsic.width = at_least(self._MIN_WIDTH)
+
     def _create(self):
         self._impl = self.canvas._impl
 
@@ -76,6 +80,7 @@ class Chart(Widget):
         :param figure: The matplotlib figure to draw
         """
         _, b, w, h = figure.bbox.bounds
+        self.canvas.context.clear()
         renderer = ChartRenderer(self.canvas, w, h)
 
         # Invoke the on_draw handler.
