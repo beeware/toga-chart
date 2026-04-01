@@ -1,12 +1,10 @@
-[build-system]
-requires = ["briefcase"]
-
 [tool.briefcase]
 project_name = "Toga Chart Demo"
 bundle = "org.beeware"
 version = "0.1"
 url = "https://beeware.org"
-license = "BSD license"
+license = "BSD-3-Clause"
+license-files = ["../LICENSE"]
 author = "Tiberius Yak"
 author_email = "tiberius@beeware.org"
 
@@ -19,6 +17,7 @@ requires = [
     # To run a current code checkout test on Android, you'll need to copy the
     # "examples" folder into a location that isn't a subdirectory of "..", and
     # use the appropriate folder reference for the new location.
+    # "..",
     "toga-chart",
 ]
 
