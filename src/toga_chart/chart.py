@@ -6,8 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 from toga import Canvas, Widget
-from toga.colors import color as parse_color
-from toga.colors import rgba
+from toga.colors import rgb, Color
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
 from travertino.size import at_least
@@ -80,7 +79,7 @@ class Chart(Widget):
         :param figure: The matplotlib figure to draw
         """
         _, b, w, h = figure.bbox.bounds
-        self.canvas.context.clear()
+        self.canvas.root_state.drawing_actions.clear()
         renderer = ChartRenderer(self.canvas, w, h)
 
         # Invoke the on_draw handler.
@@ -140,13 +139,13 @@ class ChartRenderer(RendererBase):
         else:
             r, g, b, a = gc.get_rgb()
 
-        color = parse_color(rgba(r * 255, g * 255, b * 255, a))
+        color = Color.parse(rgb(r * 255, g * 255, b * 255, a))
 
         if rgbFace is not None:
-            stroke_fill_context = self._canvas.context.Fill(color=color)
+            stroke_fill_context = self._canvas.fill(color=color)
         else:
             offset, sequence = gc.get_dashes()
-            stroke_fill_context = self._canvas.context.Stroke(
+            stroke_fill_context = self._canvas.stroke(
                 color=color,
                 line_width=gc.get_linewidth(),
                 line_dash=sequence,
@@ -154,22 +153,22 @@ class ChartRenderer(RendererBase):
 
         transform = transform + Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
 
-        with stroke_fill_context as context:
-            with context.Context() as path_segments:
+        with stroke_fill_context
+            with self._canvas.state():
                 for points, code in path.iter_segments(transform):
                     if code == Path.MOVETO:
-                        path_segments.move_to(points[0], points[1])
+                        self._canvas.move_to(points[0], points[1])
                     elif code == Path.LINETO:
-                        path_segments.line_to(points[0], points[1])
+                        self._canvas.line_to(points[0], points[1])
                     elif code == Path.CURVE3:
-                        path_segments.quadratic_curve_to(
+                        self._canvas.quadratic_curve_to(
                             points[0],
                             points[1],
                             points[2],
                             points[3],
                         )
                     elif code == Path.CURVE4:
-                        path_segments.bezier_curve_to(
+                        self._canvas.bezier_curve_to(
                             points[0],
                             points[1],
                             points[2],
@@ -178,7 +177,8 @@ class ChartRenderer(RendererBase):
                             points[5],
                         )
                     elif code == Path.CLOSEPOLY:
-                        path_segments.ClosedPath(points[0], points[1])
+                        self._canvas.move_to(points[0], points[1])
+                        self._canvas.close_path()
 
     def draw_image(self, gc, x, y, im):
         pass
@@ -202,14 +202,12 @@ class ChartRenderer(RendererBase):
         if ismath:
             self._draw_text_as_path(gc, x, y, s, prop, angle, ismath)
         else:
-            self._canvas.context.translate(x, y)
-            self._canvas.context.rotate(-math.radians(angle))
-            with self._canvas.context.Fill(
-                color=self.to_toga_color(*gc.get_rgb())
-            ) as fill:
+            self._canvas.translate(x, y)
+            self._canvas.rotate(-math.radians(angle))
+            with self._canvas.fill(color=self.to_toga_color(*gc.get_rgb())):
                 font = self.get_font(prop)
-                fill.write_text(s, x=0, y=0, font=font)
-            self._canvas.context.reset_transform()
+                self._canvas.write_text(s, x=0, y=0, font=font)
+            self._canvas.reset_transform()
 
     def flipy(self):
         return True
@@ -235,4 +233,4 @@ class ChartRenderer(RendererBase):
         return Font(family=font_family, size=size)
 
     def to_toga_color(self, r, g, b, a):
-        return parse_color(rgba(r * 255, g * 255, b * 255, a))
+        return Color.parse(rgb(r * 255, g * 255, b * 255, a))
