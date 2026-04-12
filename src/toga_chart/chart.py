@@ -6,7 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.path import Path
 from matplotlib.transforms import Affine2D
 from toga import Canvas, Widget
-from toga.colors import rgb, Color
+from toga.colors import Color, rgb
 from toga.fonts import CURSIVE, FANTASY, MONOSPACE, SANS_SERIF, SERIF, Font
 from toga.handlers import wrapped_handler
 from travertino.size import at_least
@@ -153,7 +153,7 @@ class ChartRenderer(RendererBase):
 
         transform = transform + Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
 
-        with stroke_fill_context
+        with stroke_fill_context:
             with self._canvas.state():
                 for points, code in path.iter_segments(transform):
                     if code == Path.MOVETO:
