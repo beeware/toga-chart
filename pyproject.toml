@@ -71,13 +71,13 @@ dev = [
 
 # Docs are always built on a specific Python version; see RTD and tox config files.
 docs = [
-    "furo == 2025.12.19",
-    "pyenchant == 3.3.0",
-    "sphinx == 8.2.3",
-    "sphinx_tabs == 3.5.0",
-    "sphinx-autobuild == 2024.10.3",
-    "sphinx-copybutton == 0.5.2",
-    "sphinxcontrib-spelling == 8.0.2",
+    "furo == 2025.12.19 ; python_version >= '3.11'",
+    "pyenchant == 3.3.0 ; python_version >= '3.11'",
+    "sphinx == 8.2.3 ; python_version >= '3.11'",
+    "sphinx_tabs == 3.5.0 ; python_version >= '3.11'",
+    "sphinx-autobuild == 2024.10.3 ; python_version >= '3.11'",
+    "sphinx-copybutton == 0.5.2 ; python_version >= '3.11'",
+    "sphinxcontrib-spelling == 8.0.2 ; python_version >= '3.11'",
 ]
 
 [project.urls]
