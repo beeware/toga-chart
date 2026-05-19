@@ -1,0 +1,1 @@
+Obsolete pre-commit-update workflow because dependabot natively supports pre-commit updates now.
