@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 dynamic = ["version"]
 name = "toga-chart"
 description = "A Toga matplotlib backend."
-readme = "README.rst"
+readme = "README.md"
 requires-python = ">= 3.10"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
