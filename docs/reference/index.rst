@@ -4,7 +4,10 @@
 Reference
 =========
 
-This is the technical reference for public APIs provided by toga-chart.
+This is the technical reference for public APIs provided by Toga Chart.
 
-.. toctree::
-   :maxdepth: 2
+Chart widget
+============
+
+.. autoclass:: toga_chart.Chart
+   :members:

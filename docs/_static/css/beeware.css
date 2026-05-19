@@ -1,0 +1,25 @@
+:root {
+  --color-beeware-yellow: #f7d117;
+  --color-beeware-black: #111111;
+}
+
+.sidebar-brand-text {
+  color: var(--color-beeware-black);
+}
+
+.toc-drawer .toc-tree a:hover,
+.sidebar-tree .reference:hover {
+  color: var(--color-beeware-black);
+}
+
+html[data-theme="light"] {
+  --color-brand-primary: var(--color-beeware-black);
+  --color-brand-content: #5c4b00;
+  --color-api-background: #fff8cf;
+}
+
+html[data-theme="dark"] {
+  --color-brand-primary: var(--color-beeware-yellow);
+  --color-brand-content: var(--color-beeware-yellow);
+  --color-api-background: #3a3100;
+}

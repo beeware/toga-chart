@@ -1,8 +1,8 @@
-.. _background:
+.. _about:
 
-===============
-About Briefcase
-===============
+================
+About Toga Chart
+================
 
 .. toctree::
    :maxdepth: 1

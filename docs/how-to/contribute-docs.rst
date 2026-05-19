@@ -4,8 +4,8 @@ Contributing to the documentation
 Here are some tips for working on this documentation. You're welcome to add
 more and help us out!
 
-First of all, you should check the `Restructured Text (reST) and Sphinx
-CheatSheet <http://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html>`_ to
+First of all, you should check the `Sphinx reStructuredText primer
+<https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_ to
 learn how to write your .rst file.
 
 Create a .rst file
@@ -42,5 +42,5 @@ To build the documentation locally, :ref:`set up a development environment
 
       C:\...>tox -e docs
 
-The output of the file should be in the ``build/sphinx/html`` folder. If there
+The output of the file should be in the ``docs/_build/html`` folder. If there
 are any markup problems, they'll raise an error.

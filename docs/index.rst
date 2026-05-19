@@ -29,8 +29,8 @@
 Toga Chart
 ==========
 
-Toga Chart is `Matplotlib <https://matplotlib.org/>`__ chart widget for `Toga
-<https://github.com/beeware/toga>`__.
+Toga Chart is a `Matplotlib <https://matplotlib.org/>`__ chart widget for `Toga
+<https://toga.beeware.org/en/stable/>`__.
 
 .. rst-class::  row
 
@@ -57,10 +57,10 @@ Guides and recipes for common problems and tasks, including how to contribute
 
 .. rst-class:: column column2
 
-:ref:`Background <background>`
-------------------------------
+:ref:`Topics <topics>`
+----------------------
 
-Explanation and discussion of key topics and concepts
+Explanation and discussion of key concepts
 
 
 .. rst-class:: column column2
@@ -68,10 +68,15 @@ Explanation and discussion of key topics and concepts
 :ref:`Reference <reference>`
 ----------------------------
 
-Technical reference - commands, modules, classes, methods
+Technical reference - modules, classes, methods
 
 
 .. rst-class:: clearfix row
+
+:ref:`About <about>`
+--------------------
+
+Project information, frequently asked questions, community links, and release history
 
 Community
 ---------
@@ -100,5 +105,6 @@ If you want to contribute, please `fork the project <https://github.com/beeware/
 
    tutorial/index
    how-to/index
-   background/index
+   topics/index
    reference/index
+   about/index

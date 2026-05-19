@@ -1,0 +1,7 @@
+furo == 2025.12.19
+pyenchant == 3.3.0
+sphinx == 8.2.3
+sphinx_tabs == 3.5.0
+sphinx-autobuild == 2024.10.3
+sphinx-copybutton == 0.5.2
+sphinxcontrib-spelling == 8.0.2

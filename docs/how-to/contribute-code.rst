@@ -1,7 +1,7 @@
-Contributing code to Toga-Chart
+Contributing code to Toga Chart
 ===============================
 
-If you experience problems with Toga-Chart, `log them on GitHub`_. If you want
+If you experience problems with Toga Chart, `log them on GitHub`_. If you want
 to contribute code, please `fork the code`_ and `submit a pull request`_.
 
 .. _log them on Github: https://github.com/beeware/toga-chart/issues
@@ -13,7 +13,7 @@ to contribute code, please `fork the code`_ and `submit a pull request`_.
 Setting up your development environment
 ---------------------------------------
 
-The recommended way of setting up your development environment for Toga-Chart is
+The recommended way of setting up your development environment for Toga Chart is
 to use a `virtual environment <https://docs.python.org/3/library/venv.html>`__,
 install the required dependencies and start coding:
 
@@ -46,7 +46,7 @@ install the required dependencies and start coding:
       C:\...>py -m venv venv
       C:\...>venv\Scripts\activate
 
-To install all the development version of Toga-Chart, along with all it's
+To install the development version of Toga Chart, along with all its
 requirements, run the following commands within your virtual environment:
 
 .. tabs::
@@ -71,8 +71,8 @@ requirements, run the following commands within your virtual environment:
 
 Now you are ready to start hacking! Have fun!
 
-Toga-Chart uses `PyTest <https://pytest.org>`__ for its own test suite. It uses
-`tox <https://tox.readthedocs.io/en/latest/>`__ to manage the testing process.
+Toga Chart uses `pytest <https://docs.pytest.org/en/stable/>`__ for its own test suite. It uses
+`tox <https://tox.wiki/en/latest/>`__ to manage the testing process.
 To set up a testing environment and run the full test suite:
 
 .. tabs::
@@ -99,7 +99,7 @@ To set up a testing environment and run the full test suite:
       C:\...>tox
 
 By default this will run the test suite multiple times, once on each Python
-version supported by Toga-Chart, as well as running some pre-commit checks of
+version supported by Toga Chart, as well as running some pre-commit checks of
 code style and validity. This can take a while, so if you want to speed up
 the process while developing, you can run the tests on one Python version only:
 
@@ -146,5 +146,5 @@ Or, to run using a specific version of Python:
       C:\...>tox -e py
 
 substituting the version number that you want to target. You can also specify
-one of the pre-commit checks `flake8`, `docs` or `package` to check code
+one of the tox environments, such as ``docs`` or ``package``, to check
 formatting, documentation syntax and packaging metadata, respectively.
