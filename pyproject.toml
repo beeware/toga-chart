@@ -62,6 +62,7 @@ tox-uv = [
 ]
 
 dev = [
+    "briefcase>=0.4.2",
     "setuptools_scm == 10.0.5",
     "toga-dummy >= 0.5.0, < 0.6.0",
     {include-group = "pre-commit"},
