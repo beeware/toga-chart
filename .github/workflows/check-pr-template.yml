@@ -1,0 +1,11 @@
+name: PR Checklist
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-pr-template:
+    name: Check PR template
+    uses: Ciemaar/beeware.github/.github/workflows/towncrier-run.yml@add-pr-checklist
+    # uses: beeware/.github/.github/workflows/towncrier-run.yml@main
