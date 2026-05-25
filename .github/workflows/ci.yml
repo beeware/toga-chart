@@ -36,8 +36,7 @@ jobs:
 
   towncrier:
     name: Check towncrier
-    uses: Ciemaar/beeware.github/.github/workflows/towncrier-run.yml@towncrier-pr-comment
-    # uses: beeware/.github/.github/workflows/towncrier-run.yml@main
+    uses: beeware/.github/.github/workflows/towncrier-run.yml@main
     with:
       tox-source: "--group tox-uv"
 
