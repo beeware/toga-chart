@@ -1,0 +1,1 @@
+Added a PR template check to commit workflow.

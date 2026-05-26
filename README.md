@@ -55,7 +55,7 @@ suite](https://beeware.org). You can talk to the community through:
 
 We foster a welcoming and respectful community as described in our
 [BeeWare Community Code of
-Conduct](https://beeware.org/community/behavior/).
+Conduct](https://beeware.org/community/code-of-conduct/).
 
 ## Contributing
 
