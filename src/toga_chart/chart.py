@@ -200,7 +200,11 @@ class ChartRenderer(RendererBase):
         # Math mode text must be rendered using paths.
         # Otherwise, we can use canvas-level text markup.
         if ismath:
-            self._draw_text_as_path(gc, x, y, s, prop, angle, ismath)
+            try:
+                # The mtext parameter was added recently (in MatPlotLib 3.11.0).
+                self._draw_text_as_path(gc, x, y, s, prop, angle, ismath, mtext=None)
+            except TypeError:
+                self._draw_text_as_path(gc, x, y, s, prop, angle, ismath)
         else:
             self._canvas.translate(x, y)
             self._canvas.rotate(-math.radians(angle))
