@@ -19,6 +19,7 @@ requires = [
     # use the appropriate folder reference for the new location.
     # "..",
     "toga-chart",
+    "numpy",
 ]
 
 [tool.briefcase.app.chart.macOS]
