@@ -147,3 +147,5 @@ terms = ["TODO"]
 # MD041: First line in file should be level 1 heading; title will be included in the target page
 "docs/en/how-to/contribute/**/*.md" = ["MD041"]
 "docs/en/how-to/contribute/*.md" = ["MD041"]
+# MD041: Change note fragments are prose snippets, not standalone documents
+"changes/*.md" = ["MD041"]
