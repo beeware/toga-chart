@@ -3,7 +3,6 @@ search:
   exclude: true
 ---
 
-- [Home](index.md)
 - Tutorial
     - [Tutorial](tutorial/index.md)
 - How-to guides
