@@ -70,14 +70,9 @@ dev = [
 ]
 
 # Docs are always built on a specific Python version; see RTD and tox config files.
+# beeware-docs-tools is not published to PyPI; install from the base repo.
 docs = [
-    "furo == 2025.12.19",
-    "pyenchant == 3.3.0",
-    "sphinx == 8.2.3",
-    "sphinx_tabs == 3.5.0",
-    "sphinx-autobuild == 2024.10.3",
-    "sphinx-copybutton == 0.5.2",
-    "sphinxcontrib-spelling == 8.0.2",
+    "beeware-docs-tools @ git+https://github.com/beeware/beeware-docs-tools@main",
 ]
 
 [project.urls]
