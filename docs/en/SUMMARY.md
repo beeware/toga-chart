@@ -51,3 +51,5 @@ search:
     - [Community](background/community.md)
 - Reference
     - [Reference](reference/index.md)
+- About
+    - [Release History](about/releases.md)
