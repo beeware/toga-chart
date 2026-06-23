@@ -4,6 +4,7 @@ Toga Chart is a [Matplotlib](https://matplotlib.org/) chart widget for [Toga](ht
 
 - **[Tutorial](tutorial/index.md)** — get started with a hands-on introduction for beginners.
 - **[How-to guides](how-to/index.md)** — guides and recipes for common problems and tasks, including how to contribute.
+- **[Topic guides](topics/index.md)** — explanation and discussion of key topics and concepts.
 - **[Reference](reference/index.md)** — technical reference for the public API.
 - **[About Toga Chart](about/index.md)** — frequently asked questions, community, and release history.
 

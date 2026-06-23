@@ -43,6 +43,8 @@ search:
     - Internal
         - [Internal How-to guides](how-to/internal/index.md)
         - [Release process](how-to/internal/release.md)
+- Topic guides
+    - [Topic guides](topics/index.md)
 - Reference
     - [Reference](reference/index.md)
 - About Toga Chart
