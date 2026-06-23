@@ -4,7 +4,6 @@ repos:
     hooks:
       - id: check-toml
       - id: check-yaml
-        args: [--unsafe]
       - id: check-case-conflict
       - id: end-of-file-fixer
       - id: trailing-whitespace
