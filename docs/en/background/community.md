@@ -15,4 +15,4 @@ If you experience problems with Toga Chart,
 [log them on GitHub](https://github.com/beeware/toga-chart/issues).
 
 If you want to contribute to Toga Chart, you can read through the
-[Toga Chart contribution guides](#). <!-- TODO(task-4): restore link to ../how-to/contribute/index.md -->
+[Toga Chart contribution guides](../how-to/contribute/index.md)
