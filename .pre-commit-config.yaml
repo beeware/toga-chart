@@ -17,4 +17,3 @@ repos:
     rev: v0.2.20
     hooks:
       - id: rumdl
-      - id: rumdl-fmt
