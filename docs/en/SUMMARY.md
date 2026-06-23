@@ -18,7 +18,6 @@ search:
             - [Triage an issue](how-to/contribute/what/triage.md)
             - [Review a pull request](how-to/contribute/what/review-pr.md)
             - [Propose a new feature](how-to/contribute/what/propose-feature.md)
-            - [Translate content](how-to/contribute/what/translate.md)
             - [Use the tools](how-to/contribute/what/use-tools.md)
         - How do I contribute?
             - [Setting up a development environment](how-to/contribute/how/dev-environment.md)
@@ -33,7 +32,6 @@ search:
             - [Providing a review](how-to/contribute/how/review-pr.md)
             - [Submitting a new issue](how-to/contribute/how/new-issue.md)
             - [Proposing a new feature](how-to/contribute/how/propose-feature.md)
-            - [Translating content](how-to/contribute/how/translate.md)
         - What happens next?
             - [Pull request review process](how-to/contribute/next/pr-review.md)
             - [Release process](how-to/contribute/next/release.md)

@@ -39,7 +39,7 @@ The procedure for cutting a new release is as follows:
     tox -e towncrier
     ```
 
-    to generate the updated release notes. Submit the PR; once it's been    reviewed and merged, you can restart the release process from step 1.
+    to generate the updated release notes. Submit the PR; once it's been reviewed and merged, you can restart the release process from step 1.
 
 3. Tag the release, and push the tag upstream:
 
