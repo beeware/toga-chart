@@ -43,11 +43,10 @@ search:
     - Internal
         - [Internal How-to guides](how-to/internal/index.md)
         - [Release process](how-to/internal/release.md)
-- Background
-    - [Background](background/index.md)
-    - [FAQ](background/faq.md)
-    - [Community](background/community.md)
 - Reference
     - [Reference](reference/index.md)
 - About
+    - [About](about/index.md)
+    - [FAQ](about/faq.md)
+    - [Community](about/community.md)
     - [Release History](about/releases.md)
