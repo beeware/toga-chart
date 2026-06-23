@@ -37,8 +37,8 @@ extra:
 theme:
   name: material
   language: en
-  logo: assets/images/toga.png
-  favicon: assets/images/toga.png
+  logo: images/toga.png
+  favicon: images/toga.png
   features:
     - content.tabs.link
     - toc.follow
