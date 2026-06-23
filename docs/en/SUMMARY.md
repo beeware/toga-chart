@@ -10,3 +10,5 @@ search:
     - [Background](background/index.md)
     - [FAQ](background/faq.md)
     - [Community](background/community.md)
+- Reference
+    - [Reference](reference/index.md)

@@ -9,7 +9,7 @@ Toga Chart is a [Matplotlib](https://matplotlib.org/) chart widget for
   and tasks, including how to contribute. <!-- TODO(task-4): restore link to how-to/index.md -->
 - **[Background](background/index.md)** — explanation and discussion of key
   topics and concepts.
-- **[Reference](#)** — technical reference for the public API. <!-- TODO(task-3): restore link to reference/index.md -->
+- **[Reference](reference/index.md)** — technical reference for the public API.
 
 ## Community
 
