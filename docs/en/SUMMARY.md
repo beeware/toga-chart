@@ -45,8 +45,8 @@ search:
         - [Release process](how-to/internal/release.md)
 - Reference
     - [Reference](reference/index.md)
-- About
-    - [About](about/index.md)
+- About Toga Chart
+    - [About Toga Chart](about/index.md)
     - [FAQ](about/faq.md)
     - [Community](about/community.md)
     - [Release History](about/releases.md)
