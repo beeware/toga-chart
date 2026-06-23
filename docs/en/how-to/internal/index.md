@@ -1,4 +1,4 @@
-# Internal How-to guides
+# Toga Chart internal How-to guides
 
 These guides are for the maintainers of the Toga Chart project, documenting internal project procedures.
 
