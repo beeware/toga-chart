@@ -82,25 +82,6 @@ Documentation = "https://toga-chart.beeware.org/"
 Tracker = "https://github.com/beeware/toga-chart/issues"
 Source = "https://github.com/beeware/toga-chart"
 
-[tool.setuptools_scm]
-# To enable SCM versioning, we need an empty tool configuration for setuptools_scm
-
-[tool.towncrier]
-directory = "changes"
-package = "toga_chart"
-package_dir = "src"
-filename = "docs/en/about/releases.md"
-title_format = false
-template = "changes/template.md"
-start_string = "<!-- towncrier release notes start -->"
-type = [
-    { directory = "feature", name = "Features", showcontent = true },
-    { directory = "bugfix", name = "Bugfixes", showcontent = true },
-    { directory = "removal", name = "Backward Incompatible Changes", showcontent = true },
-    { directory = "doc", name = "Documentation", showcontent = true },
-    { directory = "misc", name = "Misc", showcontent = false },
-]
-
 [tool.ruff.lint]
 # In addition to the default rules, these additional rules will be used:
 extend-select = [
@@ -149,3 +130,22 @@ terms = ["TODO"]
 "docs/en/how-to/contribute/*.md" = ["MD041"]
 # MD041: Change note fragments are prose snippets, not standalone documents
 "changes/*.md" = ["MD041"]
+
+[tool.setuptools_scm]
+# To enable SCM versioning, we need an empty tool configuration for setuptools_scm
+
+[tool.towncrier]
+directory = "changes"
+package = "toga_chart"
+package_dir = "src"
+filename = "docs/en/about/releases.md"
+title_format = false
+template = "changes/template.md"
+start_string = "<!-- towncrier release notes start -->"
+type = [
+    { directory = "feature", name = "Features", showcontent = true },
+    { directory = "bugfix", name = "Bugfixes", showcontent = true },
+    { directory = "removal", name = "Backward Incompatible Changes", showcontent = true },
+    { directory = "doc", name = "Documentation", showcontent = true },
+    { directory = "misc", name = "Misc", showcontent = false },
+]
