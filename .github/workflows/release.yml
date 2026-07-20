@@ -64,17 +64,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          shopt -s nullglob
-          artifacts=(dist/*)
-          if (( ${#artifacts[@]} == 0 )); then
-            echo "No artifacts found in dist/"
-            exit 1
-          fi
-          gh release create "${GITHUB_REF_NAME}" "${artifacts[@]}" \
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${VERSION}" \
             --draft \
-            --title "${VERSION}"
+            --verify-tag \
+            dist/*
 
       - name: Publish release to Test PyPI
-        uses: pypa/gh-action-pypi-publish@ba38be9e461d3875417946c167d0b5f3d385a247  # release/v1
+        uses: pypa/gh-action-pypi-publish@ba38be9e461d3875417946c167d0b5f3d385a247  # v1.14.0
         with:
           repository-url: https://test.pypi.org/legacy/

@@ -20,8 +20,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# Read-only by default. Called reusable workflows and individual jobs
-# declare any additional permissions they require.
 permissions:
   contents: read
 
