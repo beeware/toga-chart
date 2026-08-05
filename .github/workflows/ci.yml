@@ -34,14 +34,14 @@ jobs:
   pre-commit:
     name: Pre-commit checks
     permissions: {}
-    uses: beeware/.github/.github/workflows/pre-commit-run.yml@741cc5a311012ee0ee195938889a337449d01eeb  # main
+    uses: beeware/.github/.github/workflows/pre-commit-run.yml@main
     with:
       pre-commit-source: "--group pre-commit"
 
   towncrier:
     name: Check towncrier
     permissions: {}
-    uses: beeware/.github/.github/workflows/towncrier-run.yml@741cc5a311012ee0ee195938889a337449d01eeb  # main
+    uses: beeware/.github/.github/workflows/towncrier-run.yml@main
     with:
       tox-source: "--group tox-uv"
 
@@ -51,7 +51,7 @@ jobs:
       id-token: write
       contents: read
       attestations: write
-    uses: beeware/.github/.github/workflows/python-package-create.yml@741cc5a311012ee0ee195938889a337449d01eeb  # main
+    uses: beeware/.github/.github/workflows/python-package-create.yml@main
     with:
       attest: ${{ inputs.attest-package }}
 
