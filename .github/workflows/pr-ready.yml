@@ -1,0 +1,29 @@
+name: Mark Ready when all Green
+
+on:
+  workflow_call:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: read
+    steps:
+      - name: Add label to PR
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3  # v9.0.0
+        with:
+          script: |
+            const prs = context.payload.workflow_call.pull_requests;
+            if (!prs.length) return;
+            for (const pr of prs) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                labels: ['ready for review']
+              });
+            }
