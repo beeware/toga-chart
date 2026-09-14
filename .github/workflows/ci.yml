@@ -33,14 +33,15 @@ env:
 jobs:
   pre-commit:
     name: Pre-commit checks
-    permissions: {}
     uses: beeware/.github/.github/workflows/pre-commit-run.yml@main
     with:
       pre-commit-source: "--group pre-commit"
 
   towncrier:
     name: Check towncrier
-    permissions: {}
+    permissions:
+      contents: read
+      pull-requests: write
     uses: beeware/.github/.github/workflows/towncrier-run.yml@main
     with:
       tox-source: "--group tox-uv"
