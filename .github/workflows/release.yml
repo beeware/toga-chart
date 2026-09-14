@@ -11,7 +11,7 @@ jobs:
   ci:
     name: CI
     permissions: {}
-    uses: ./.github/workflows/ci.yml
+    uses: $/.github/workflows/ci.yml
     with:
       attest-package: "true"
 

@@ -15,10 +15,10 @@ from travertino.size import at_least
 class Chart(Widget):
     def __init__(
         self,
-        id: str = None,
+        id: str | None = None,
         style=None,
-        on_resize: callable = None,
-        on_draw: callable = None,
+        on_resize: callable | None = None,
+        on_draw: callable | None = None,
     ):
         """Create a new matplotlib chart.
 
@@ -78,7 +78,7 @@ class Chart(Widget):
 
         :param figure: The matplotlib figure to draw
         """
-        _, b, w, h = figure.bbox.bounds
+        _, _, w, h = figure.bbox.bounds
         self.canvas.root_state.drawing_actions.clear()
         renderer = ChartRenderer(self.canvas, w, h)
 
@@ -144,7 +144,7 @@ class ChartRenderer(RendererBase):
         if rgbFace is not None:
             stroke_fill_context = self._canvas.fill(color=color)
         else:
-            offset, sequence = gc.get_dashes()
+            _, sequence = gc.get_dashes()
             stroke_fill_context = self._canvas.stroke(
                 color=color,
                 line_width=gc.get_linewidth(),
@@ -153,32 +153,31 @@ class ChartRenderer(RendererBase):
 
         transform = transform + Affine2D().scale(1.0, -1.0).translate(0.0, self.height)
 
-        with stroke_fill_context:
-            with self._canvas.state():
-                for points, code in path.iter_segments(transform):
-                    if code == Path.MOVETO:
-                        self._canvas.move_to(points[0], points[1])
-                    elif code == Path.LINETO:
-                        self._canvas.line_to(points[0], points[1])
-                    elif code == Path.CURVE3:
-                        self._canvas.quadratic_curve_to(
-                            points[0],
-                            points[1],
-                            points[2],
-                            points[3],
-                        )
-                    elif code == Path.CURVE4:
-                        self._canvas.bezier_curve_to(
-                            points[0],
-                            points[1],
-                            points[2],
-                            points[3],
-                            points[4],
-                            points[5],
-                        )
-                    elif code == Path.CLOSEPOLY:
-                        self._canvas.move_to(points[0], points[1])
-                        self._canvas.close_path()
+        with stroke_fill_context, self._canvas.state():
+            for points, code in path.iter_segments(transform):
+                if code == Path.MOVETO:
+                    self._canvas.move_to(points[0], points[1])
+                elif code == Path.LINETO:
+                    self._canvas.line_to(points[0], points[1])
+                elif code == Path.CURVE3:
+                    self._canvas.quadratic_curve_to(
+                        points[0],
+                        points[1],
+                        points[2],
+                        points[3],
+                    )
+                elif code == Path.CURVE4:
+                    self._canvas.bezier_curve_to(
+                        points[0],
+                        points[1],
+                        points[2],
+                        points[3],
+                        points[4],
+                        points[5],
+                    )
+                elif code == Path.CLOSEPOLY:
+                    self._canvas.move_to(points[0], points[1])
+                    self._canvas.close_path()
 
     def draw_image(self, gc, x, y, im):
         pass
