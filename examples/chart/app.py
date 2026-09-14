@@ -17,7 +17,7 @@ class ExampleChartApp(toga.App):
         # Add a subplot that is a histogram of the data,
         # using the normal matplotlib API
         ax = figure.add_subplot(1, 1, 1)
-        n, bins, patches = ax.hist(self.x, num_bins, density=1, range=(0, 200))
+        _, bins, _ = ax.hist(self.x, num_bins, density=1, range=(0, 200))
 
         # add a 'best fit' line
         y = (1 / (np.sqrt(2 * np.pi) * self.sigma.value)) * np.exp(
