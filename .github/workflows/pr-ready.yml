@@ -2,7 +2,7 @@ name: Mark PR Ready for review
 on:
   pull_request:
 jobs:
-  enforce-all-checks:
+  mark-ready:
     runs-on: ubuntu-latest
     permissions:
       checks: read
