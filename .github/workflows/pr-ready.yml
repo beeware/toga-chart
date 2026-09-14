@@ -8,11 +8,11 @@ jobs:
       checks: read
     steps:
       - name: Wait for GitHub Checks
-        uses: poseidon/wait-for-status-checks@v0.6.0
+        uses: poseidon/wait-for-status-checks@e7e24423722c5b8e97a6dd5848827d2a412f812d # v0.6.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Add label to PR
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3  # v9.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             github.rest.issues.addLabels({
