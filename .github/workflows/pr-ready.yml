@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       checks: read
+      pull-requests: write
     steps:
       - name: Wait for GitHub Checks
         uses: poseidon/wait-for-status-checks@e7e24423722c5b8e97a6dd5848827d2a412f812d # v0.6.0
