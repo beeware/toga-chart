@@ -5,9 +5,12 @@ on:
     branches:
       - 'dependabot/**'
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   changenote:
-    permissions: {}
     name: Dependabot Change Note
     uses: beeware/.github/.github/workflows/dependabot-changenote.yml@main
     secrets:
