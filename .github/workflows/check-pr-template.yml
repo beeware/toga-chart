@@ -4,8 +4,10 @@ on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
 
+permissions:
+  contents: read
+
 jobs:
   check-pr-template:
-    permissions: {}
     name: Check PR template
     uses: beeware/.github/.github/workflows/pr-checklist.yml@main
